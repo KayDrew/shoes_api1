@@ -1,0 +1,51 @@
+html{
+    text-align: center;
+}
+
+
+.container{
+
+    width: 80%;
+    margin: 0 auto;
+    border-bottom: 12px solid rgba(0,0, 0,0.6 );   
+    border-right: 12px solid rgba(0, 0, 0, 0.8);    
+    border-top: 12px solid orangered;   
+    border-left: 12px solid rgb(248, 165, 10); 
+    margin-top: 5%;
+    padding: 20px;
+}
+
+#heading{
+}
+
+h1{
+    font-size: 3.3em;
+    font-weight: bolder;
+    font-family: monospace;
+    color:orangered;
+    margin-left: 25%;
+    margin-right: 25%;
+    background-color: rgba(0,0, 0,0.6 );
+    text-shadow: 5.3px  orangered;
+}
+
+
+
+#img{
+    width: 30%;
+}
+
+#search{
+    border: none;
+    background-color:rgb(222, 155, 31);
+    color: rgba(0,0, 0,0.7 );
+    padding: 4px;
+    border-radius: 3px;
+    font-weight: bold;
+    box-shadow: 0.3px 0.3px 0.6px 0.6px rgb(78, 71, 61);
+}
+
+
+#display{
+    display: none;
+}
