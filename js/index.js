@@ -20,9 +20,14 @@ document.addEventListener("alpine:init", () => {
               
                      init(){
 
-                        axios.get('https://shoes-catalogue-api.onrender.com/api/shoes').then(result => {
+                        axios.get('https://shoes-catalogue-api.onrender.com/api/shoes',{headers: {
+                          'Access-Control-Allow-Origin' : '*',
+                          'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                        
+                        }}).then(result => {
 
-                         console.log(result);
+                        this.allShoes=result.data.shoes;
+                        console.log(result.data.shoes)
                     
                           } );
     

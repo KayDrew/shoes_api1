@@ -51,7 +51,11 @@
         </div>
         <div id="display" x-show="displayShoes">
             <h2>Your Search Results</h2>
-            <div class="products" ></div>
+            <div class="products" >
+                <template x-for="shoe in allShoes">
+                    <span>shoe.brand</span>
+                </template>
+            </div>
         </div>
     </div>
      </body>
