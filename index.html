@@ -5,7 +5,12 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Lubabalo's Shoes</title>
-	<link rel="stylesheet" href="style.css" />
+	<link rel="stylesheet" href="./css/style.css" />
+	 <link rel="stylesheet" href="./css/all.min.css">
+  <script src="./js/all.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
 </head>
 
 <body>
@@ -17,14 +22,16 @@
         	
 		<img src="shoe.jpeg" alt="shoe image" id="img"/>
         <div class="buttons">
-           <span>Brand: </span> <select>
+           <span>Brand: </span> 
+              <select name="brand">
                 <option>All</option> 
                 <option>Litez</option> 
                 <option>Zapper</option>
                 <option>Stuph</option>
                 <option>Moo</option>
             </select>
-            <span>Size: </span> <select>
+            <span>Size: </span> 
+           <select name="size">
                 <option>All</option> 
                 <option>6</option> 
                 <option>7</option>
@@ -32,17 +39,23 @@
                 <option>9</option>
                 <option>10</option>
             </select>
-            <span>Color: </span> <select>
+            <span>Color: </span> 
+             <select name="color">
                 <option>All</option> 
                 <option>White</option> 
                 <option>Black</option>
                 <option>Orange</option>
                 <option>Navy</option>
             </select>
-         <button type="submit" id="search">search</button>
+         <button type="submit" id="search" x-on:click="showShoes">search</button>
         </div>
         <div id="display">
             <h2>Your Search Results</h2>
-            <div class="products"></div>
+            <div class="products" x-show="displayShoes"></div>
         </div>
     </div>
+     </body>
+         <script  src="./js/index.js">
+
+       </script>
+    </html>
