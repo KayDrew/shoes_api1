@@ -18,7 +18,7 @@
 		<h1>Balo's Shoes</h1>
 	
 	</div>
-	<div class="container">
+	<div class="container" x-data="shoes">
         	
 		<img src="shoe.jpeg" alt="shoe image" id="img"/>
         <div class="buttons">
@@ -49,9 +49,9 @@
             </select>
          <button type="submit" id="search" x-on:click="showShoes">search</button>
         </div>
-        <div id="display">
+        <div id="display" x-show="displayShoes">
             <h2>Your Search Results</h2>
-            <div class="products" x-show="displayShoes"></div>
+            <div class="products" ></div>
         </div>
     </div>
      </body>

@@ -22,8 +22,8 @@ document.addEventListener("alpine:init", () => {
 
                         axios.get('https://shoes-catalogue-api.onrender.com/api/shoes').then(result => {
 
-                          this.shoes=result.data;
-                          console.log(shoes);
+                         console.log(result);
+                    
                           } );
     
      },
