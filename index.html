@@ -53,7 +53,10 @@
             <h2>Your Search Results</h2>
             <div class="products" >
                 <template x-for="shoe in allShoes">
-                    <span>shoe.brand</span>
+                    <span x-text="shoe.brand"></span>
+                    <span x-text="shoe.size"></span>
+                    <span x-text="shoe.color"></span>
+                    <span x-text="shoe.price"></span>
                 </template>
             </div>
         </div>
