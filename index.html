@@ -53,6 +53,16 @@
             <h2>Your Search Results</h2>
             <div class="products" >
                 <template x-for="shoe in allShoes">
+                    <div>
+                        <img src="shoe2.jpeg" alt="shoe"/>
+                        <div class="shoeProduct">
+                            <h3 x-text="shoe.brand"></h3>
+                            <p x-text="shoe.size"></p>
+                            <p x-text="shoe.color"></p>
+                            <h3 x-text="shoe.price"></h3>
+                            <p class="inStock" x-text="shoe.in_stock"></p>
+                        </div>
+                    </div>
                     <span x-text="shoe.brand"></span>
                     <span x-text="shoe.size"></span>
                     <span x-text="shoe.color"></span>
