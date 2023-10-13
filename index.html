@@ -23,7 +23,7 @@
 		<img src="shoe.jpeg" alt="shoe image" id="img"/>
         <div class="buttons">
            <span>Brand: </span> 
-              <select name="brand">
+              <select id="brand">
                 <option>All</option> 
                 <option>Litez</option> 
                 <option>Zapper</option>
@@ -31,7 +31,7 @@
                 <option>Moo</option>
             </select>
             <span>Size: </span> 
-           <select name="size">
+           <select id="size">
                 <option>All</option> 
                 <option>6</option> 
                 <option>7</option>
@@ -40,12 +40,12 @@
                 <option>10</option>
             </select>
             <span>Color: </span> 
-             <select name="color">
+             <select id="color">
                 <option>All</option> 
-                <option>White</option> 
+                <option>Green</option> 
                 <option>Black</option>
                 <option>Orange</option>
-                <option>Navy</option>
+                <option>Blue</option>
             </select>
          <button type="submit" id="search" x-on:click="showShoes">search</button>
         </div>
@@ -54,7 +54,7 @@
             <div class="products" >
                 <template x-for="shoe in allShoes">
                     <div>
-                        <img src="shoe2.jpeg" alt="shoe"/>
+                        <img :src='imgUrl' alt="shoe"/>
                         <div class="shoeProduct">
                             <h3 x-text="shoe.brand"></h3>
                             <p x-text="shoe.size"></p>
