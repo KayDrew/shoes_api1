@@ -54,14 +54,17 @@
             <div class="products" >
                 <template x-for="shoe in allShoes">
                     <div class="item">
-                        <img :src='imgUrl' alt="shoe"/>
-                        
-                            <h3 x-text="shoe.brand"></h3>
-                            <h3 x-text="shoe.size"></h3>
-                            <h3 x-text="shoe.color"></h3>
-                            <h3 x-text="shoe.price"></h3>
-                            <h3 class="inStock" x-text="shoe.in_stock"></h3>
-                        
+                        <div>
+                        <img :src='shoe.image' alt="shoe"/>
+                    </div>
+                    <div class="text">
+                       <div><span x-text="shoe.brand"></span></div>
+                    <div> <span>S:</span> <span x-text="shoe.size"></span></div>
+                <div><span x-text="shoe.color"></span></div>
+            <div><span>R</span> <span x-text="shoe.price"></span></div>
+        <div> <span>stock:</span> <span class="inStock" x-text="shoe.in_stock"></span></div>
+    <div>  <button type="submit">Buy</button></div>
+                        </div>
                     </div>
                     <span x-text="shoe.brand"></span>
                     <span x-text="shoe.size"></span>

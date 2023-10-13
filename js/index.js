@@ -11,7 +11,7 @@ document.addEventListener("alpine:init", () => {
                 size:0,
                 color:"",
                 displayShoes: false,
-                imgUrl:"",
+               
               
               
               
@@ -29,7 +29,7 @@ document.addEventListener("alpine:init", () => {
 
                   this.allShoes=result.data.shoes;
 
-                  this.getColor();
+              
                     } );
                   }
 
@@ -39,7 +39,7 @@ document.addEventListener("alpine:init", () => {
                     ).then(result => {
 
                    this.allShoes=result.data.shoes;
-                 this.getColor();
+          
                
                      } );
 
@@ -51,7 +51,7 @@ document.addEventListener("alpine:init", () => {
                     ).then(result => {
 
                    this.allShoes=result.data.shoes;
-                this.getColor();
+              
                
                      } );
 
@@ -64,10 +64,8 @@ document.addEventListener("alpine:init", () => {
                     ).then(result => {
 
                    this.allShoes=result.data.shoes;
-
-                   this.getColor();
-                  
-               
+  
+                     
                      } );
 
                   }
@@ -79,7 +77,7 @@ document.addEventListener("alpine:init", () => {
                     ).then(result => {
 
                    this.allShoes=result.data.shoes;
-                  this.getColor();
+             
               
                
                      } );
@@ -94,9 +92,7 @@ document.addEventListener("alpine:init", () => {
                     ).then(result => {
 
                    this.allShoes=result.data.shoes;
-                   this.getColor();
-
-               
+                  
                
                      } );
 
@@ -109,63 +105,16 @@ document.addEventListener("alpine:init", () => {
                     ).then(result => {
 
                    this.allShoes=result.data.shoes;
-                  this.getColor();
+                 
                
                      } );
 
-                  }
+                  }         
+
+               },       
 
 
-          
-
-               },
-
-
-               getColor(){
-
-                for(let i=0;i<this.allShoes.length;++i){
-
-  
-                  if(this.allShoes[i].color=='Green') {
-
-                    this.imgUrl='green.jpeg';
-                  }
-
-                  else if(this.allShoes[i].color=='Blue') {
-
-                    this.imgUrl='blue.jpeg';
-                  }
-
-                  else if(this.allShoes[i].color=='Black') {
-
-                    this.imgUrl='black.png';
-                  }
-
-                  else if(this.allShoes[i].color=='Orange') {
-
-                    this.imgUrl='brown.jpeg';
-                  }
-                }
-               },
-
-
-              init(){
-
-                axios.get('https://shoes-catalogue-api.onrender.com/api/shoes'
-                ).then(result => {
-
-               this.allShoes=result.data.shoes;
-              this.getColor();
-           
-                 } );
-              }
-              
-
-
-     }
-
-
-     
+     }  
 
 });
 });
