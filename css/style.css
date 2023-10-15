@@ -63,12 +63,14 @@ h1{
 .text{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    margin-top: 20px;
 }
 
 .text span{
     font-weight: bolder;
-    font-size: 13px;
+    font-size: 17px;
     color: black;
+  
 }
 
 .item img{
@@ -133,19 +135,21 @@ h1{
 .products button{
     border: none;
     width: 140%;
-    background-color: rgba(0,0, 0,0.9 );
+    background-color: rgba(0,0, 0,1 );
     border-radius: 3px;
-    color: orangered;
+    color: orange;
     margin-left: 150%;
     padding: 5px;
     font-weight: bold;
-    margin-top: 30px;
-    margin-bottom: 5px;
+ margin-top: 20px;
+    margin-bottom: 15px;
     font-size:14px;
+    
+box-shadow:1px 1px 2px 2px grey;
 }
 
 .item{
-    border: 0.7px solid orangered;
+box-shadow:0.7px 0.7px 2px 2px grey;
     margin: 3px;
     border-radius: 10px;
 }
