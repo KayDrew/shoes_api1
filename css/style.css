@@ -132,10 +132,10 @@ h1{
 
 .products button{
     border: none;
-    width: 120%;
-    background-color: rgba(0,0, 0,0.7 );
+    width: 140%;
+    background-color: rgba(0,0, 0,0.9 );
     border-radius: 3px;
-    color: orange;
+    color: orangered;
     margin-left: 150%;
     padding: 5px;
     font-weight: bold;
@@ -145,7 +145,7 @@ h1{
 }
 
 .item{
-    border: 0.7px solid orange;
+    border: 0.7px solid orangered;
     margin: 3px;
     border-radius: 10px;
 }
