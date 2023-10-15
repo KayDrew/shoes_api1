@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Lubabalo's Shoes</title>
+	<title>Cart</title>
 	<link rel="stylesheet" href="./css/style.css" />
 	 <link rel="stylesheet" href="./css/all.min.css">
   <script src="./js/all.min.js"></script>
@@ -16,8 +16,12 @@
 
     <a href="stock.html"><i id='admin' class="fa-solid  fa-user"></i></a>
     <div class="icon">
+        <div class="icon">
+            <a href="index.html"><i id="homeIcon" class="fa-solid  fa-home"></i></a>
+          </div>
         <a href="history.html"><i id="clockIcon" class="fa-solid  fa-clock"></i></a>
       </div>
+      
       <div class="icon">
         <p id="itemCount" x-text="totalItems">45
         </p>
@@ -28,8 +32,7 @@
       </div>
 </header>
 <body>
-	<div id="heading">
-		<h1>Balo's Shoes</h1>
+    <h1 id="heading">Balo's Shoes</h1>
 	
 	</div>
 	<div class="container" x-data="shoes">

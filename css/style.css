@@ -10,12 +10,10 @@ header{
 }
 .container{
 
-    width: 80%;
-    margin: 0 auto;
-    border-left: 12px solid  rgb(106, 106, 110); 
-    border-top: 12px solid  rgb(55, 55, 55);  
-    border-bottom: 12px solid orangered;   
-    border-right: 12px solid rgb(248, 165, 10); 
+    border-left: 8px solid  rgb(106, 106, 110); 
+    border-top: 8px solid  rgb(55, 55, 55);  
+    border-bottom: 8px solid orangered;   
+    border-right: 8px solid rgb(248, 165, 10); 
     border-radius: 10px;
     margin-top: 5%;
     padding: 20px;
@@ -37,14 +35,14 @@ header{
 h2{
     width: 50%;
     color:rgba(0,0, 0,0.7 );
-    font-size: 2.3em;
+    font-size: 2.2em;
     margin-left: 25%;
     font-family: monospace;
 
 }
 
 h1{
-    font-size: 3.2em;
+    font-size: 2.7em;
     font-weight: bolder;
  font-family:monospace;
     color: rgba(0,0, 0,0.6 );
@@ -82,7 +80,7 @@ h1{
 #itemCount{
     border-radius: 50%;
     padding: 3px;
-    font-size: 10px;
+    font-size: 8px;
     color: orangered;
     margin-top:-25px;
     height:81%;
@@ -96,22 +94,32 @@ h1{
     }
     #admin{
         
-        font-size: 1.5em;
-      margin-bottom: -17px;
+        font-size: 1.3em;
+      margin-bottom: -23px;
     float: left;
+    
+margin-top: 15px;
       margin-left: 15px;
     }
 
     #clockIcon{
 
-        font-size: 1.5em;
+        font-size: 1.3em;
       margin-bottom: -17px;
         margin-right: 65px;
         }
 
+
+        #homeIcon{
+
+            font-size: 1.3em;
+          margin-bottom: -17px;
+            margin-right: 25px;
+            }
+
         #cart{
 
-            font-size: 1.5em;
+            font-size: 1.3em;
             margin-top:-18px;
             }
             
@@ -162,7 +170,11 @@ box-shadow:0.7px 0.7px 2px 2px grey;
         grid-template-columns:1fr 1fr 1fr;
     }
 
-
+.container{
+    
+    width: 80%;
+    margin: 0 auto;
+}
 }
 
 
@@ -171,7 +183,7 @@ box-shadow:0.7px 0.7px 2px 2px grey;
 
  .container{
     border: none;
-    width: 100%;
+   
  }
 
  #img{
@@ -180,7 +192,31 @@ box-shadow:0.7px 0.7px 2px 2px grey;
 
 
  h1{
-    font-size: 2.2em;
+    font-size: 2.0em;
  }
+
+ h2{
+    font-size:1.7em; ;
+ }
+
+
+ #admin,#cart, #clockIcon,#homeIcon{
+
+    font-size: 0.8em;
+ }
+
+ #admin{
+margin-top: 15px;
+ }
+
+#itemCount{
+    margin-top: -15px;
+    margin-bottom: -2px;
+}
+
+
+#cart{
+    margin-top: -10px;
+}
 
 }

@@ -16,8 +16,12 @@
 
     <a href="stock.html"><i id='admin' class="fa-solid  fa-user"></i></a>
     <div class="icon">
+        <div class="icon">
+            <a href="index.html"><i id="homeIcon" class="fa-solid  fa-home"></i></a>
+          </div>
         <a href="history.html"><i id="clockIcon" class="fa-solid  fa-clock"></i></a>
       </div>
+      
       <div class="icon">
         <p id="itemCount" x-text="totalItems">45
         </p>
@@ -27,5 +31,36 @@
     <a href="cart.html"> <i id="cart" class="fa-solid fa-cart-shopping"></i></a>
       </div>
 </header>
-<body></body>
+<body>
+    <h1 id="heading">Balo's Shoes</h1>
+
+    <div class="cart"  x-show="showCart">
+           <h2 style="text-align:center; padding-top:20px; padding-bottom: 30px;font-family:monospace; font-size:1.8em;">Your Cart</h2>
+             <template x-for="shoe in cartShoes">
+           <table>
+             <tr>
+               <td x-text="shoe.brand"></td>
+               <td x-text="shoe.size"></td>
+               <td x-text="shoe.color"></td>
+                              <td> <button id="add" @click="buy(shoe.id)">+</button></td>
+                                
+    <td> <button id="remove" @click="remove(shoe.id)">-</button></td>
+                             
+               <td x-text="shoe.price"></td>
+              
+             </tr>
+   
+           </table>
+   
+         </template>
+           <span x-show="showCheckout">Amount Due: R</span><span  id="total"  x-text="cartTotal"  x-show="showCheckout"></span>
+           <p x-show="empty">Your Cart Is Empty</p>
+           <button class="checkout" x-show="empty" @click="showMenu=true; showCart=false">Shop Items</button><br/>
+           <button id="checkout" x-show="showCheckout" @click="checkoutClicked">Checkout</button>
+           <p x-text="message" style="color:red"></p>
+             <input  id="amountPaid" type="Number" placeholder="enter cash amount" x-model="amount" x-show="showInput"/>
+     <button class="pay"  @click="pay; setTimeout(function(){
+   message='';},3000)"  x-show="showInput">Pay</button>
+       </div>
+</body>
 </html>
