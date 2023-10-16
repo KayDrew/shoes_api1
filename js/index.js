@@ -20,6 +20,7 @@ document.addEventListener("alpine:init", () => {
                 amount:0,
                 qty:0,           
                 price:0,
+                image:"",
               
               showShoes(){
                 this.displayShoes= true;
@@ -127,9 +128,28 @@ document.addEventListener("alpine:init", () => {
                 let addColor=document.querySelector('#addColor').value;
                 let quantity= Number(this.qty);
                 let cost= Number(this.price);
-                console.log(cost);
                
-                axios.post("https://shoes-catalogue-api.onrender.com/api/shoes",{'color':addColor,'brand':addBrand,'price':cost,'size':addSize,'in_stock':quantity}).then((result)=>{
+               if(addColor=="Black"){
+                  this.image="black.png";
+               }
+
+              else if(addColor=="Blue"){
+                    this.image="blue.jpeg";
+              }
+             else if(addColor=="Orange"){
+                    this.image="brown.jpeg";
+              }
+          else{
+                this.image="green.jpeg";
+          }
+
+
+
+                console.log(this.image);
+
+
+               
+                axios.post("https://shoes-catalogue-api.onrender.com/api/shoes",{'color':addColor,'brand':addBrand,'price':cost,'size':addSize,'in_stock':quantity,'image':this.image}).then((result)=>{
                 
                 console.log(result.status);
                 });
