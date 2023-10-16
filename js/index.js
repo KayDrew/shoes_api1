@@ -116,7 +116,16 @@ document.addEventListener("alpine:init", () => {
                
                      } );
 
-                  }         
+                  }   
+                  else{
+                    axios.get('https://shoes-catalogue-api.onrender.com/api/shoes/brand/'+this.brand+'/size/'+this.size+'/color/'+this.color
+                    ).then(result => {
+
+                   this.allShoes=result.data.shoes;
+                 
+               
+                     } );
+                  }
 
                }, 
 
@@ -144,14 +153,10 @@ document.addEventListener("alpine:init", () => {
           }
 
 
-
-                console.log(this.image);
-
-
                
                 axios.post("https://shoes-catalogue-api.onrender.com/api/shoes",{'color':addColor,'brand':addBrand,'price':cost,'size':addSize,'in_stock':quantity,'image':this.image}).then((result)=>{
                 
-                console.log(result.status);
+                console.log(result);
                 });
                 
 
