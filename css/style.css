@@ -4,7 +4,7 @@ html{
 }
 
 header{
-    background-color: rgba(0,0, 0,0.8);
+    background-color: rgba(0,0, 0,0.9);
     padding: 8px;
     
 }
@@ -91,7 +91,9 @@ h1{
 
     a{
         color: orangered;
+        
     }
+
     #admin{
         
         font-size: 1.3em;
@@ -186,6 +188,10 @@ box-shadow:0.7px 0.7px 2px 2px grey;
    
  }
 
+ .item{
+    margin-bottom: 8px;
+ }
+
  #img{
     width: 50%;
  }
@@ -196,7 +202,7 @@ box-shadow:0.7px 0.7px 2px 2px grey;
  }
 
  h2{
-    font-size:1.7em; ;
+    font-size:1.4em; ;
  }
 
 
@@ -204,6 +210,16 @@ box-shadow:0.7px 0.7px 2px 2px grey;
 
     font-size: 0.8em;
  }
+
+ #clockIcon{
+
+    margin-right:35px ;
+ }
+
+ #homeIcon{
+    margin-right: 0px;
+ }
+ 
 
  #admin{
 margin-top: 15px;
@@ -217,6 +233,16 @@ margin-top: 15px;
 
 #cart{
     margin-top: -10px;
+}
+
+.text{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 2fr;
+    margin-top: 20px;
+}
+
+select{
+    width: 10%;
 }
 
 }
