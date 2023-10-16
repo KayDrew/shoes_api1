@@ -111,7 +111,13 @@ document.addEventListener("alpine:init", () => {
 
                   }         
 
-               },       
+               }, 
+               
+               
+               goToHome(){
+
+                window.location="index.html";
+               },
 
 
      }  

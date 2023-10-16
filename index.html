@@ -2,97 +2,77 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Cart</title>
-	<link rel="stylesheet" href="./css/style.css" />
-	 <link rel="stylesheet" href="./css/all.min.css">
-  <script src="./js/all.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/all.min.css">
+    <script src="./js/all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
 </head>
 <header>
 
-    <a href="stock.html"><i id='admin' class="fa-solid  fa-user"></i></a>
+    <i id='admin' class="fa-solid  fa-user" onclick="location.href='stock.html'"></i>
+
+
+    <i id='clock' class="fa-solid  fa-clock" onclick="location.href='history.html'"></i>
+    
+    <i id='home' class="fa-solid  fa-home" onclick="location.href='index.html'"></i>
+
+    
+
     <div class="icon">
-        <div class="icon">
-            <a href="index.html"><i id="homeIcon" class="fa-solid  fa-home" x-on:click=""></i></a>
-          </div>
-        <a href="history.html"><i id="clockIcon" class="fa-solid  fa-clock"></i></a>
-      </div>
-      
-      <div class="icon">
         <p id="itemCount" x-text="totalItems">45
         </p>
-      </div>
-  
-      <div class="icon">
-    <a href="cart.html"> <i id="cart" class="fa-solid fa-cart-shopping"></i></a>
-      </div>
+    </div>
+
+    <div class="icon">
+        <i id="cart" class="fa-solid fa-cart-shopping" onclick="location.href='cart.html'"></i>
+    </div>
 </header>
+
 <body>
     <h1 id="heading">Balo's Shoes</h1>
-	
-	</div>
-	<div class="container" x-data="shoes">
-        	
-		<img src="shoe.jpeg" alt="shoe image" id="img"/>
+
+    </div>
+    <div class="container" x-data="shoes">
+
+        <img src="shoe.jpeg" alt="shoe image" id="img" />
         <div class="buttons">
-           <span>Brand: </span> 
-              <select id="brand">
-                <option>All</option> 
-                <option>Litez</option> 
+            <span>Brand: </span>
+            <select id="brand">
+                <option>All</option>
+                <option>Litez</option>
                 <option>Zapper</option>
                 <option>Stuph</option>
                 <option>Moo</option>
             </select>
-            <span>Size: </span> 
-           <select id="size">
-                <option>All</option> 
-                <option>6</option> 
+            <span>Size: </span>
+            <select id="size">
+                <option>All</option>
+                <option>6</option>
                 <option>7</option>
                 <option>8</option>
                 <option>9</option>
                 <option>10</option>
             </select>
-            <span>Color: </span> 
-             <select id="color">
-                <option>All</option> 
-                <option>Green</option> 
+            <span>Color: </span>
+            <select id="color">
+                <option>All</option>
+                <option>Green</option>
                 <option>Black</option>
                 <option>Orange</option>
                 <option>Blue</option>
             </select>
-         <button type="submit" id="search" x-on:click="showShoes">search</button>
+            <button type="submit" id="search" x-on:click="showShoes">search</button>
         </div>
-        <div id="display" x-show="displayShoes">
-            <h2>Your Search Results</h2>
-            <div class="products" >
-                <template x-for="shoe in allShoes">
-                    <div class="item">
-                        <div>
-                        <img :src='shoe.image' alt="shoe"/>
-                    </div>
-                    <div class="text">
-                       <div><span x-text="shoe.brand"></span></div>
-                    <div> <span>S:</span> <span x-text="shoe.size"></span></div>
-                <div><span x-text="shoe.color"></span></div>
-            <div><span>R</span> <span x-text="shoe.price"></span></div>
-        <div> <span>stock:</span> <span class="inStock" x-text="shoe.in_stock"></span></div>
-    <div>  <button type="submit">Add To Cart</button></div>
-                        </div>
-                    </div>
-                    <span x-text="shoe.brand"></span>
-                    <span x-text="shoe.size"></span>
-                    <span x-text="shoe.color"></span>
-                    <span x-text="shoe.price"></span>
-                </template>
-            </div>
-        </div>
-    </div>
-     </body>
-         <script  src="./js/index.js">
 
-       </script>
-    </html>
+
+</body>
+<script src="./js/index.js">
+
+</script>
+
+</html>

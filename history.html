@@ -14,22 +14,21 @@
 </head>
 <header>
 
-    <a href="stock.html"><i id='admin' class="fa-solid  fa-user"></i></a>
-    <div class="icon">
-        <div class="icon">
-            <a href="index.html"><i id="homeIcon" class="fa-solid  fa-home"></i></a>
-          </div>
-        <a href="history.html"><i id="clockIcon" class="fa-solid  fa-clock"></i></a>
-      </div>
-      
-      <div class="icon">
-        <p id="itemCount" x-text="totalItems">45
-        </p>
-      </div>
+  <i id='admin' class="fa-solid  fa-user" onclick="location.href='stock.html'"></i>
+
+
+  <i id='clock' class="fa-solid  fa-clock" onclick="location.href='history.html'"></i>
   
-      <div class="icon">
-    <a href="cart.html"> <i id="cart" class="fa-solid fa-cart-shopping"></i></a>
-      </div>
+  <i id='home' class="fa-solid  fa-home" onclick="location.href='index.html'"></i>
+
+  <div class="icon">
+      <p id="itemCount" x-text="totalItems">45
+      </p>
+  </div>
+
+  <div class="icon">
+      <i id="cart" class="fa-solid fa-cart-shopping" onclick="location.href='cart.html'"></i>
+  </div>
 </header>
 <body>
     <h1 id="heading">Balo's Shoes</h1>
