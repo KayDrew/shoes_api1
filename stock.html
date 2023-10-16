@@ -12,7 +12,7 @@
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
 </head>
-<header>
+<header x-data="shoes">
 
   <i id='admin' class="fa-solid  fa-user" onclick="location.href='stock.html'"></i>
 
@@ -24,7 +24,7 @@
   
 
   <div class="icon">
-      <p id="itemCount" x-text="totalItems">45
+      <p id="itemCount" x-text="totalItems">
       </p>
   </div>
 
@@ -32,7 +32,46 @@
       <i id="cart" class="fa-solid fa-cart-shopping" onclick="location.href='cart.html'"></i>
   </div>
 </header>
-<body>
+<body x-data="shoes">
     <h1 id="heading">Balo's Shoes</h1>
+    <h2>Add New Stock</h2>
+    <div class="buttons">
+      
+      <span>Brand: </span>
+      <select id="addBrand">
+         
+          <option>Litez</option>
+          <option>Zapper</option>
+          <option>Stuph</option>
+          <option>Moo</option>
+      </select>
+      <span>Size: </span>
+      <select id="addSize">
+          
+          <option>6</option>
+          <option>7</option>
+          <option>8</option>
+          <option>9</option>
+          <option>10</option>
+      </select>
+      <span>Color: </span>
+      <select id="addColor">
+        
+          <option>Green</option>
+          <option>Black</option>
+          <option>Orange</option>
+          <option>Blue</option>
+      </select> 
+     
+     
+      <span>Price:</span><input type="number" x-model="price" id="price"/>
+      <span>Qty:</span><input type="number" x-model="qty" id="qty"/>
+      <button x-on:click="addStock" id="add" type="submit">Add</button>
+    
+      </div>
     </body>
+  </body>
+  <script src="./js/index.js">
+  
+  </script>
     </html>

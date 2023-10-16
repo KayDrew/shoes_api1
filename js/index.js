@@ -12,10 +12,14 @@ document.addEventListener("alpine:init", () => {
                 color:"",
                 displayShoes: false,
                 totalItems:0,
-
-               
-              
-              
+                showCheckout:false,
+                empty:true,
+                cartTotal:0,
+                message:"",
+                showInput:false,
+                amount:0,
+                qty:0,           
+                price:0,
               
               showShoes(){
                 this.displayShoes= true;
@@ -114,12 +118,73 @@ document.addEventListener("alpine:init", () => {
                   }         
 
                }, 
+
+
+               addStock(){
+                
+                let addBrand= document.querySelector('#addBrand').value;
+                let addSize=document.querySelector('#addSize').value;
+                let addColor=document.querySelector('#addColor').value;
+                let quantity= Number(this.qty);
+                let cost= Number(this.price);
+                console.log(cost);
+               
+                axios.post("https://shoes-catalogue-api.onrender.com/api/shoes",{'color':addColor,'brand':addBrand,'price':cost,'size':addSize,'in_stock':quantity}).then((result)=>{
+                
+                console.log(result.status);
+                });
+                
+
+               },
                
                
-               addToCart(){
-              this.totalItems+=1;
+    addToCart(){
+          this.totalItems+=1;
                },
 
+   displayCart(){
+   
+       if(this.cartTotal>0){
+          this.showCheckout=true;
+           this.empty=false;
+        }
+   
+      else{
+   
+        this.empty=true;
+   }
+  
+},
+
+checkoutClicked(){
+
+  this.showInput=true;
+  },
+
+  pay(){
+      
+      
+    var paymentAmount=Number(this.amount);  	
+
+     if(this.amount<this.cartTotal){
+
+        this.message="The amount is insufficient"
+
+    }
+    
+    else{
+                      
+                
+         this.message="Payment successful!";      
+                      
+        }
+    
+  },
+
+
+
+
+   
 
      }  
 

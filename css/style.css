@@ -153,7 +153,7 @@ margin-bottom: 10px;
             padding-right:35px;
             
             }
-#search{
+#search,#add{
     border: none;
     background-color:rgb(222, 155, 31);
     color: rgba(0,0, 0,0.7 );

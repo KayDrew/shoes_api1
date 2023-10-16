@@ -12,7 +12,7 @@
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
 </head>
-<header>
+<header x-data="shoes">
 
   <i id='admin' class="fa-solid  fa-user" onclick="location.href='stock.html'"></i>
 
@@ -24,7 +24,7 @@
   
 
   <div class="icon">
-      <p id="itemCount" x-text="totalItems">45
+      <p id="itemCount" x-text="totalItems">
       </p>
   </div>
 
@@ -32,10 +32,10 @@
       <i id="cart" class="fa-solid fa-cart-shopping" onclick="location.href='cart.html'"></i>
   </div>
 </header>
-<body>
+<body x-data="shoes">
     <h1 id="heading">Balo's Shoes</h1>
 
-    <div class="cart"  x-show="showCart">
+    <div class="cart" >
                          <td x-text="shoe.color"></td>
                               <td> <button id="add" @click="buy(shoe.id)">+</button></td>
                                 
@@ -50,7 +50,6 @@
          </template>
            <span x-show="showCheckout">Amount Due: R</span><span  id="total"  x-text="cartTotal"  x-show="showCheckout"></span>
            <p x-show="empty">Your Cart Is Empty</p>
-           <button class="checkout" x-show="empty" @click="showMenu=true; showCart=false">Shop Items</button><br/>
            <button id="checkout" x-show="showCheckout" @click="checkoutClicked">Checkout</button>
            <p x-text="message" style="color:red"></p>
              <input  id="amountPaid" type="Number" placeholder="enter cash amount" x-model="amount" x-show="showInput"/>
@@ -62,6 +61,8 @@
              <tr>
                <td x-text="shoe.brand"></td>
                <td x-text="shoe.size"></td>
+               <td x-text="shoe.color"></td>
+
                </tr>
                </table>
                </template>
