@@ -11,6 +11,8 @@ document.addEventListener("alpine:init", () => {
                 size:0,
                 color:"",
                 displayShoes: false,
+                totalItems:0,
+
                
               
               
@@ -114,9 +116,8 @@ document.addEventListener("alpine:init", () => {
                }, 
                
                
-               goToHome(){
-
-                window.location="index.html";
+               addToCart(){
+              this.totalItems+=1;
                },
 
 

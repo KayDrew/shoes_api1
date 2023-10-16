@@ -12,7 +12,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
 </head>
-<header>
+<header x-data="shoes">
 
     <i id='admin' class="fa-solid  fa-user" onclick="location.href='stock.html'"></i>
 
@@ -24,7 +24,7 @@
     
 
     <div class="icon">
-        <p id="itemCount" x-text="totalItems">45
+        <p id="itemCount" x-text="totalItems">
         </p>
     </div>
 
@@ -67,6 +67,30 @@
                 <option>Blue</option>
             </select>
             <button type="submit" id="search" x-on:click="showShoes">search</button>
+            <div id="display" x-show="displayShoes">
+                <h2>Your Search Results</h2>
+                <div class="products" >
+                    <template x-for="shoe in allShoes">
+                        <div class="item">
+                            <div>
+                            <img :src='shoe.image' alt="shoe"/>
+                        </div>
+                        <div class="text">
+                           <div><span x-text="shoe.brand"></span></div>
+                        <div> <span>S:</span> <span x-text="shoe.size"></span></div>
+                    <div><span x-text="shoe.color"></span></div>
+                <div><span>R</span> <span x-text="shoe.price"></span></div>
+            <div> <span>stock:</span> <span class="inStock" x-text="shoe.in_stock"></span></div>
+        <div>  <button type="submit" x-on:click="addToCart()">Add To Cart</button></div>
+                            </div>
+                        </div>
+                        <span x-text="shoe.brand"></span>
+                        <span x-text="shoe.size"></span>
+                        <span x-text="shoe.color"></span>
+                        <span x-text="shoe.price"></span>
+                    </template>
+                </div>
+            </div>
         </div>
 
 
