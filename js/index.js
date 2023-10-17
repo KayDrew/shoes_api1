@@ -21,6 +21,24 @@ document.addEventListener("alpine:init", () => {
                 qty:0,           
                 price:0,
                 image:"",
+                cart_id:0,
+                username:"Kabelo",
+
+
+                
+            
+createCart(){
+
+  axios.get('https://shoes-catalogue-api.onrender.com/api/shoes/create?username=${this.username}').then(result=>{
+ 
+ this.cart_id=result.data.cart_code;
+ console.log(this.cart_id)
+ 
+ });
+ 
+ 
+ 
+ },
               
               showShoes(){
                 this.displayShoes= true;
@@ -208,6 +226,10 @@ checkoutClicked(){
 
 
 
+  init(){
+
+    this.createCart();
+  },
 
    
 
