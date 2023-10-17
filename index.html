@@ -24,7 +24,7 @@
     
 
     <div class="icon">
-        <p id="itemCount" x-text="totalItems">
+        <p id="itemCount">
         </p>
     </div>
 
@@ -81,7 +81,7 @@
                     <div><span x-text="shoe.color"></span></div>
                 <div><span>R</span> <span x-text="shoe.price"></span></div>
             <div> <span>stock:</span> <span class="inStock" x-text="shoe.in_stock"></span></div>
-        <div>  <button type="submit" x-on:click="addToCart()">Add To Cart</button></div>
+        <div>  <button x-on:click="addToCart">Add To Cart</button></div>
                             </div>
                         </div>
                         <span x-text="shoe.brand"></span>

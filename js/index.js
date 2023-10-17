@@ -182,7 +182,19 @@ createCart(){
                
                
     addToCart(){
-          this.totalItems+=1;
+
+      this.totalItems++;
+        
+      const cartNum= document.querySelector('#itemCount');
+      cartNum.innerText=this.totalItems;
+         
+               },
+
+
+               updateCart(){
+                
+      const cartNum= document.querySelector('#itemCount');
+      cartNum.innerText=this.totalItems;
                },
 
    displayCart(){
@@ -229,6 +241,7 @@ checkoutClicked(){
   init(){
 
     this.createCart();
+    this.updateCart();
   },
 
    
