@@ -155,6 +155,7 @@ createCart(){
                 let addColor=document.querySelector('#addColor').value;
                 let quantity= Number(this.qty);
                 let cost= Number(this.price);
+                let postSize= Number(this.addSize);
                
                if(addColor=="Black"){
                   this.image="black.png";
@@ -172,7 +173,7 @@ createCart(){
 
 
                
-                axios.post("https://shoes-catalogue-api.onrender.com/api/shoes",{'color':addColor,'brand':addBrand,'price':cost,'size':addSize,'in_stock':quantity,'image':this.image}).then((result)=>{
+                axios.post("https://shoes-catalogue-api.onrender.com/api/shoes",{'color':addColor,'brand':addBrand,'price':cost,'size':postSize,'in_stock':quantity,'image':this.image}).then((result)=>{
                 
                 console.log(result);
                 });
