@@ -155,7 +155,7 @@ createCart(){
                 let addColor=document.querySelector('#addColor').value;
                 let quantity= Number(this.qty);
                 let cost= Number(this.price);
-                let postSize= Number(this.addSize);
+                let postSize= Number(addSize);
                
                if(addColor=="Black"){
                   this.image="black.png";
