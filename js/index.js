@@ -175,11 +175,18 @@ console.log(this.cart_id)
 
        if(cost>0 && quantity>0){
         
+        if(Number.isInteger(quantity)){
            
             axios.post("https://shoes-catalogue-api.onrender.com/api/shoes",{'color':addColor,'brand':addBrand,'price':cost,'size':postSize,'in_stock':quantity,'image':this.image}).then((result)=>{
            this.addMessage=result.data.message;
            
             });
+            
+            }
+            else{
+            	
+            this.addMessage="Please enter  only whole numbers for quantity ";
+            }
             
           }
 
