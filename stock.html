@@ -32,11 +32,11 @@
       <i id="cart" class="fa-solid fa-cart-shopping" onclick="location.href='cart.html'"></i>
   </div>
 </header>
-<body x-data="shoes">
+<body x-data="shoes" >
     <h1 id="heading">Balo's Shoes</h1>
     <h2>Add New Stock</h2>
-    <p x-text="addMessage"></p>
-    <div class="buttons">
+    <p x-text="addMessage" id="addMessage">Error messages</p>
+    <div class="container1">
       
       <span>Brand: </span>
       <select id="addBrand">
@@ -45,8 +45,9 @@
           <option>Zapper</option>
           <option>Stuph</option>
           <option>Moo</option>
-      </select>
-      <span>Size: </span>
+      </select><br/>
+      
+      <span>Size: </span>  
       <select id="addSize">
           
           <option>6</option>
@@ -54,7 +55,7 @@
           <option>8</option>
           <option>9</option>
           <option>10</option>
-      </select>
+      </select><br/>
       <span>Color: </span>
       <select id="addColor">
         
@@ -62,11 +63,11 @@
           <option>Black</option>
           <option>Orange</option>
           <option>Blue</option>
-      </select> 
+      </select> <br/>
      
      
-      <span>Price:</span><input type="number" x-model="price" id="price"/>
-      <span>Qty:</span><input type="number" x-model="qty" id="qty"/>
+      <span>Price:</span><input type="number" x-model="price" id="price"/><br/>
+      <span>Qty: </span>      <input type="number" x-model="qty" id="qty"/><br/><br/>
       <button x-on:click="addStock" id="add" type="submit">Add</button>
     
       </div>

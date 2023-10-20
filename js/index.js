@@ -174,7 +174,7 @@ console.log(this.cart_id)
       }
 
        if(cost>0 && quantity>0){
-        console.log(this.image)
+        
            
             axios.post("https://shoes-catalogue-api.onrender.com/api/shoes",{'color':addColor,'brand':addBrand,'price':cost,'size':postSize,'in_stock':quantity,'image':this.image}).then((result)=>{
            this.addMessage=result.data.message;
@@ -188,7 +188,23 @@ console.log(this.cart_id)
             this.addMessage="Cost and quantity cannot be Zero";
 
           }     
+          
+          const addMess= document.querySelector("#addMessage");
+          
+          if(this.addMessage!=""){
+          	
+              setTimeout(function(){
+          	addMess.style.visibility="hidden";
+                               },
 
+                              3000);
+                              
+                              
+               addMess.style.visibility="visible";     
+          
+       }
+          
+          
            },
            
            
