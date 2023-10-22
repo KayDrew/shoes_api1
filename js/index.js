@@ -40,6 +40,22 @@ console.log(this.cart_id)
 
 
 },
+
+addToCart(shoesId,qty){
+
+  axios.post('https://shoes-catalogue-api.onrender.com/api/shoes/addToCart',{'cart_code':this.cart_id,'shoesId':shoesId,'qty':qty}).then((result)=>{
+
+  
+
+  this.totalItems++;
+    
+  const cartNum= document.querySelector('#itemCount');
+  cartNum.innerText=this.totalItems;
+
+    console.log(result.data);
+  });
+},
+
           
           showShoes(){
             this.displayShoes= true;
@@ -215,14 +231,7 @@ console.log(this.cart_id)
            },
            
            
-addToCart(){
 
-  this.totalItems++;
-    
-  const cartNum= document.querySelector('#itemCount');
-  cartNum.innerText=this.totalItems;
-     
-           },
 
 
            updateCart(){
