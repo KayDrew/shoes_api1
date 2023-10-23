@@ -33,6 +33,7 @@
   </div>
 </header>
 <body x-data="shoes" x-init="getCart">
+  <div>
     <h1 id="heading">Balo's Shoes</h1>
     
  
@@ -51,8 +52,7 @@
                                  <td> <button  @click="addToCart(shoe.id)">+</button></td>
                                  
                                     <td x-text="shoe.qty"></td> 
-                                    <td x-text="shoe.id"></td> 
-       <td> <button id="remove" @click="remove(shoe.id)">-</button></td>
+       <td> <button id="remove" @click="remove(shoe.id,shoe.price)">-</button></td>
                                 
            
                  
@@ -71,7 +71,7 @@
 		  <input  id="amountPaid" type="Number" placeholder="enter cash amount" x-model="payAmount" x-show="showInput"/>
   <button class="pay"  @click="pay; setTimeout(function(){
 message='';},3000)"  x-show="showInput">Pay</button>
-
+</div>
 </body>
 <script src="./js/index.js">
   

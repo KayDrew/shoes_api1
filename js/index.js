@@ -19,7 +19,7 @@ document.addEventListener("alpine:init", () => {
             qty:1,           
             price:0,
             image:"",
-            cart_id:13,
+            cart_id:0,
             username:"Kabelo",
             addMessage:"",
 
@@ -39,7 +39,7 @@ this.cart_id=result.data.cart_code;
 
 },
 
-addToCart(shoesId,qty){
+addToCart(shoesId){
 
   axios.post('https://shoes-catalogue-api.onrender.com/api/shoes/addToCart',{'cart_code':this.cart_id,'shoesId':shoesId,'qty':this.qty}).then((result)=>{
 
@@ -51,10 +51,34 @@ addToCart(shoesId,qty){
 
   this.cartItems=result.data.items;
 
-  this.getCart();
+this.addTotal();
  
   });
 },
+
+
+addTotal(){
+ 
+  let arr= this.cartItems;
+
+  let shoe={};
+  let total=0;
+  let itemCost=0;
+  
+  for(let i=0;i<arr.length;++i){
+  
+  shoe= arr[i];
+  itemCost=shoe.qty*shoe.price;
+  
+  total=total+itemCost;
+  
+  }
+  
+  this.cartTotal=total;
+},
+
+
+
 
 
 getCart(){
@@ -64,13 +88,13 @@ getCart(){
 
   this.cartItems=result.data.items;
 
-  for(let i=0;i<this.cartItems.length;++i){
+this.addTotal();
 
-    let shoe=this.cartItems[i];
-    let cost=shoe.qty*shoe.price;
-    this.cartTotal+=cost;
+if(this.cartItems.length<1){
 
-  }
+  this.empty=true;
+  this.showCheckout=false;
+}
 
    
   });
@@ -79,7 +103,28 @@ getCart(){
 
 
 
-remove(shoesId){
+remove(shoesId,price){
+
+  
+  axios.post('https://shoes-catalogue-api.onrender.com/api/shoes/removeItem',{'shoesId':shoesId,'cart_code':this.cart_id}).then(result=>{
+
+  this.cartItems=result.data.items;
+
+  this.cartTotal-=price;
+
+
+  if(this.cartItems.length<1){
+
+    this.empty=true;
+    this.showCheckout=false;
+  }
+  
+
+
+  });
+
+
+
 
 },
 
@@ -294,17 +339,25 @@ var paymentAmount=Number(this.payAmount);
  if(paymentAmount<this.cartTotal){
 
     this.message="The amount is insufficient";
-    console.log(this.message);
+
 
 }
 
 else{
                   
             
-     this.message="Payment successful!"; 
-     console.log(this.message);     
+  axios.post('https://shoes-catalogue-api.onrender.com/api/shoes/pay').then(result=>{
+
+  this.message=result.data.message;
+  this.cartTotal=0;
+
+  }); 
+    
                   
     }
+
+    
+  this.getCart();
 
 },
 
@@ -313,6 +366,8 @@ else{
 init(){
 
 this.updateCart();
+this.createCart();
+
 
 },
 
