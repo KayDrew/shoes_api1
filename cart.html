@@ -32,39 +32,31 @@
       <i id="cart" class="fa-solid fa-cart-shopping" onclick="location.href='cart.html'"></i>
   </div>
 </header>
-<body x-data="shoes">
+<body x-data="shoes" x-init="getCart">
     <h1 id="heading">Balo's Shoes</h1>
 
     <div class="cart" >
-                         <td x-text="shoe.color"></td>
-                              <td> <button id="add" @click="buy(shoe.id)">+</button></td>
-                                
-    <td> <button id="remove" @click="remove(shoe.id)">-</button></td>
-                             
-               <td x-text="shoe.price"></td>
-              
-             </tr>
-   
-           </table>
-   
-         </template>
-           <span x-show="showCheckout">Amount Due: R</span><span  id="total"  x-text="cartTotal"  x-show="showCheckout"></span>
-           <p x-show="empty">Your Cart Is Empty</p>
-           <button id="checkout" x-show="showCheckout" @click="checkoutClicked">Checkout</button>
-           <p x-text="message" style="color:red"></p>
-             <input  id="amountPaid" type="Number" placeholder="enter cash amount" x-model="amount" x-show="showInput"/>
-     <button class="pay"  @click="pay; setTimeout(function(){
-   message='';},3000)"  x-show="showInput">Pay</button>
-       <h2 style="text-align:center; padding-top:20px; padding-bottom: 30px;font-family:monospace; font-size:1.8em;">Your Cart</h2>
-             <template x-for="shoe in cartShoes">
-           <table>
-             <tr>
-               <td x-text="shoe.brand"></td>
-               <td x-text="shoe.size"></td>
-               <td x-text="shoe.color"></td>
+             <template x-for="shoe in cartItems">
+           
 
-               </tr>
-               </table>
+              <table>
+                <tr>
+                  <td x-text="shoe.brand"></td>
+                  <td x-text="shoe.color"></td>
+                  <td x-text="shoe.size"></td>
+                  <td x-text="shoe.price"></td>
+                                 <td> <button  @click="addToCart(shoe.id)">+</button></td>
+                                 
+                                    <td x-text="shoe.qty"></td>  
+       <td> <button id="remove" @click="remove(shoe.id)">-</button></td>
+                                
+           
+                 
+                </tr>
+      
+              </table>
+
+    
                </template>
               </div>
 

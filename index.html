@@ -29,7 +29,7 @@
     </div>
 
     <div class="icon">
-        <i id="cart" class="fa-solid fa-cart-shopping" onclick="location.href='cart.html'"></i>
+        <i id="cart" class="fa-solid fa-cart-shopping" onclick="location.href='cart.html'" ></i>
     </div>
 </header>
 
@@ -81,7 +81,7 @@
                     <div><span x-text="shoe.color"></span></div>
                 <div><span>R</span> <span x-text="shoe.price"></span></div>
             <div> <span>stock:</span> <span class="inStock" x-text="shoe.in_stock"></span></div>
-        <div>  <button x-on:click="addToCart(shoe.id,1)">Add To Cart</button></div>
+        <div>  <button x-on:click="addToCart(shoe.id)">Add To Cart</button></div>
                             </div>
                         </div>
                         <span x-text="shoe.brand"></span>

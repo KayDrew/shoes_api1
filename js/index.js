@@ -4,9 +4,7 @@ document.addEventListener("alpine:init", () => {
 
         return {
             allShoes:[],
-            allBrand:[],
-            allSize:[],
-           allBrandSize:[],
+           cartItems:[],
             brand:"",
             size:0,
             color:"",
@@ -18,7 +16,7 @@ document.addEventListener("alpine:init", () => {
             message:"",
             showInput:false,
             amount:0,
-            qty:0,           
+            qty:1,           
             price:0,
             image:"",
             cart_id:0,
@@ -33,7 +31,7 @@ createCart(){
 axios.get('https://shoes-catalogue-api.onrender.com/api/shoes/create?username=${this.username}').then(result=>{
 
 this.cart_id=result.data.cart_code;
-console.log(this.cart_id)
+
 
 });
 
@@ -43,17 +41,35 @@ console.log(this.cart_id)
 
 addToCart(shoesId,qty){
 
-  axios.post('https://shoes-catalogue-api.onrender.com/api/shoes/addToCart',{'cart_code':this.cart_id,'shoesId':shoesId,'qty':qty}).then((result)=>{
+  axios.post('https://shoes-catalogue-api.onrender.com/api/shoes/addToCart',{'cart_code':this.cart_id,'shoesId':shoesId,'qty':this.qty}).then((result)=>{
 
-  
 
   this.totalItems++;
     
   const cartNum= document.querySelector('#itemCount');
   cartNum.innerText=this.totalItems;
 
-    console.log(result.data);
+  this.cartItems=result.data.items;
+ 
   });
+},
+
+
+getCart(){
+
+  axios.get('https://shoes-catalogue-api.onrender.com/api/shoes/cartItems').then(result=>{
+
+
+  this.cartItems=result.data.items;
+
+   
+  });
+
+},
+
+
+remove(shoesId){
+
 },
 
           
@@ -285,6 +301,7 @@ init(){
 
 this.createCart();
 this.updateCart();
+this.getCart;
 },
 
 
