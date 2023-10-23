@@ -34,6 +34,9 @@
 </header>
 <body x-data="shoes" x-init="getCart">
     <h1 id="heading">Balo's Shoes</h1>
+    
+ 
+  <h2 style="text-align:center; padding-top:20px; padding-bottom: 30px;font-family:monospace; font-size:1.8em;">Your Cart</h2>
 
     <div class="cart" >
              <template x-for="shoe in cartItems">
@@ -47,7 +50,8 @@
                   <td x-text="shoe.price"></td>
                                  <td> <button  @click="addToCart(shoe.id)">+</button></td>
                                  
-                                    <td x-text="shoe.qty"></td>  
+                                    <td x-text="shoe.qty"></td> 
+                                    <td x-text="shoe.id"></td> 
        <td> <button id="remove" @click="remove(shoe.id)">-</button></td>
                                 
            
@@ -59,6 +63,14 @@
     
                </template>
               </div>
+              
+		<span x-show="showCheckout">Amount Due: R</span><span  id="total"  x-text="cartTotal"  x-show="showCheckout"></span>
+		<p x-show="empty">Your Cart Is Empty</p>
+		<button id="checkout" x-show="showCheckout" @click="checkoutClicked">Checkout</button>
+		<p x-text="message" style="color:navy"></p>
+		  <input  id="amountPaid" type="Number" placeholder="enter cash amount" x-model="payAmount" x-show="showInput"/>
+  <button class="pay"  @click="pay; setTimeout(function(){
+message='';},3000)"  x-show="showInput">Pay</button>
 
 </body>
 <script src="./js/index.js">

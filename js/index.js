@@ -10,16 +10,16 @@ document.addEventListener("alpine:init", () => {
             color:"",
             displayShoes: false,
             totalItems:0,
-            showCheckout:false,
-            empty:true,
+            showCheckout:true,
+            empty:false,
             cartTotal:0,
             message:"",
             showInput:false,
-            amount:0,
+            payAmount:0,
             qty:1,           
             price:0,
             image:"",
-            cart_id:0,
+            cart_id:13,
             username:"Kabelo",
             addMessage:"",
 
@@ -50,6 +50,8 @@ addToCart(shoesId,qty){
   cartNum.innerText=this.totalItems;
 
   this.cartItems=result.data.items;
+
+  this.getCart();
  
   });
 },
@@ -62,10 +64,19 @@ getCart(){
 
   this.cartItems=result.data.items;
 
+  for(let i=0;i<this.cartItems.length;++i){
+
+    let shoe=this.cartItems[i];
+    let cost=shoe.qty*shoe.price;
+    this.cartTotal+=cost;
+
+  }
+
    
   });
 
 },
+
 
 
 remove(shoesId){
@@ -278,18 +289,20 @@ this.showInput=true;
 pay(){
   
   
-var paymentAmount=Number(this.amount);  	
+var paymentAmount=Number(this.payAmount);  	
 
- if(this.amount<this.cartTotal){
+ if(paymentAmount<this.cartTotal){
 
-    this.message="The amount is insufficient"
+    this.message="The amount is insufficient";
+    console.log(this.message);
 
 }
 
 else{
                   
             
-     this.message="Payment successful!";      
+     this.message="Payment successful!"; 
+     console.log(this.message);     
                   
     }
 
@@ -299,9 +312,8 @@ else{
 
 init(){
 
-this.createCart();
 this.updateCart();
-this.getCart;
+
 },
 
 
