@@ -22,6 +22,8 @@ document.addEventListener("alpine:init", () => {
             cart_id:0,
             username:"Kabelo",
             addMessage:"",
+            historyOrders:[],
+            showAmount:true,
 
 
             
@@ -44,7 +46,6 @@ addToCart(shoesId){
   axios.post('https://shoes-catalogue-api.onrender.com/api/shoes/addToCart',{'cart_code':this.cart_id,'shoesId':shoesId,'qty':this.qty}).then((result)=>{
 
 
-  this.totalItems++;
     
   const cartNum= document.querySelector('#itemCount');
   cartNum.innerText=this.totalItems;
@@ -64,20 +65,45 @@ addTotal(){
   let shoe={};
   let total=0;
   let itemCost=0;
+  let quan=0;
   
   for(let i=0;i<arr.length;++i){
   
   shoe= arr[i];
   itemCost=shoe.qty*shoe.price;
+  quan+=shoe.qty;
   
   total=total+itemCost;
   
   }
   
   this.cartTotal=total;
+  this.totalItems=quan;
+  console.log(this.totalItems)
 },
 
 
+pastOrders(shoesId){
+
+  axios.post('https://shoes-catalogue-api.onrender.com/api/shoes/history',{'shoesId':shoesId}).then(result=>{
+
+
+  console.log(result.data)
+  });
+
+
+},
+
+
+showHistory(){
+
+
+  axios.get('https://shoes-catalogue-api.onrender.com/api/shoes/showHistory').then(result=>{
+
+this.historyOrders=result.data.items;
+  });
+
+},
 
 
 
@@ -87,6 +113,7 @@ getCart(){
 
 
   this.cartItems=result.data.items;
+  
 
 this.addTotal();
 
@@ -110,7 +137,9 @@ remove(shoesId,price){
 
   this.cartItems=result.data.items;
 
+  this.totalItems=this.cartItems.length;
   this.cartTotal-=price;
+  this.totalItems--;
 
 
   if(this.cartItems.length<1){
@@ -316,6 +345,8 @@ displayCart(){
 
    if(this.cartTotal>0){
       this.showCheckout=true;
+      
+this.showAmount=true;
        this.empty=false;
     }
 
@@ -329,12 +360,16 @@ displayCart(){
 checkoutClicked(){
 
 this.showInput=true;
+this.showCheckout=false;
+
+this.showAmount=true;
 },
 
 pay(){
   
   
 var paymentAmount=Number(this.payAmount);  	
+
 
  if(paymentAmount<this.cartTotal){
 
@@ -345,11 +380,20 @@ var paymentAmount=Number(this.payAmount);
 
 else{
                   
+  for(let i=0;i<this.cartItems.length;++i){
+
+    var shoe=this.cartItems[i];
+    var id=shoe.id;
+   
+    this.pastOrders(id);
+  }
             
   axios.post('https://shoes-catalogue-api.onrender.com/api/shoes/pay').then(result=>{
 
   this.message=result.data.message;
   this.cartTotal=0;
+  this.showInput=false;
+  this.empty=true;
 
   }); 
     

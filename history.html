@@ -12,6 +12,8 @@
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
 </head>
+
+<body x-data="shoes" x-init="showHistory">
 <header>
 
   <i id='admin' class="fa-solid  fa-user" onclick="location.href='stock.html'"></i>
@@ -22,7 +24,7 @@
   <i id='home' class="fa-solid  fa-home" onclick="location.href='index.html'"></i>
 
   <div class="icon">
-      <p id="itemCount" x-text="totalItems">45
+      <p id="itemCount" x-text="totalItems">
       </p>
   </div>
 
@@ -30,17 +32,20 @@
       <i id="cart" class="fa-solid fa-cart-shopping" onclick="location.href='cart.html'"></i>
   </div>
 </header>
-<body>
+
     <h1 id="heading">Balo's Shoes</h1>
         
-    <div class="orderHistory" x-show="showHistory">
-        <h2>Your Order History</h2>
-        <template x-for="order in pastOrders">
-        <p><span x-text="order.brand"> </span> <span x-text="order.size"> </span> <span x-text="order.color"></span>@<span x-text="order.price"></span></p>
+    <div class="orderHistory">
+        <h3 id="order">Your Order History</h3>
+        <template x-for="order in historyOrders">
+        <p><span x-text="order.brand"> </span> <span x-text="order.size"> </span> <span x-text="order.color"></span>
+          @ R<span x-text="order.price"></span> <span x-text="order.order_day"></span></p>
         </template>
-       <a href="index.html" target="_blank"> <button id="back">Back</button></a>
         </div>
  
           </div>
     </body>
+    <script src="./js/index.js">
+    </script>
+
     </html>

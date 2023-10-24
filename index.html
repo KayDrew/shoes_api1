@@ -12,7 +12,9 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
 </head>
-<header x-data="shoes">
+
+<body x-data="shoes" x-init="getCart">
+<header>
 
     <i id='admin' class="fa-solid  fa-user" onclick="location.href='stock.html'"></i>
 
@@ -33,11 +35,10 @@
     </div>
 </header>
 
-<body>
     <h1 id="heading">Balo's Shoes</h1>
 
     </div>
-    <div class="container" x-data="shoes">
+    <div class="container">
 
         <img src="shoe.jpeg" alt="shoe image" id="img" />
         <div class="buttons">
@@ -96,7 +97,6 @@
 
 </body>
 <script src="./js/index.js">
-
 </script>
 
 </html>
