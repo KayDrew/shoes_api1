@@ -24,6 +24,7 @@ document.addEventListener("alpine:init", () => {
             addMessage:"",
             historyOrders:[],
             showAmount:true,
+         
 
 
             
@@ -95,6 +96,11 @@ pastOrders(shoesId){
 },
 
 
+firstLoad(){
+this.displayShoes=false;
+},
+
+
 showHistory(){
 
 
@@ -159,6 +165,7 @@ remove(shoesId,price){
 
           
           showShoes(){
+
             this.displayShoes= true;
             this.brand= document.querySelector('#brand').value;
             this.size=document.querySelector('#size').value;
@@ -406,6 +413,10 @@ else{
 },
 
 
+init(){
+
+  this.showShoes();
+}
 
 
  }  
