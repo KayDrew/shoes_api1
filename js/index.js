@@ -19,7 +19,7 @@ document.addEventListener("alpine:init", () => {
             qty:1,           
             price:0,
             image:"",
-            cart_id:0,
+            cart_id:13,
             username:"Kabelo",
             addMessage:"",
             historyOrders:[],
@@ -405,15 +405,6 @@ else{
 
 },
 
-
-
-init(){
-
-this.updateCart();
-this.createCart();
-
-
-},
 
 
 
