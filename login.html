@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Login</title>
+	<link rel="stylesheet" href="./css/style.css" />
+	 <link rel="stylesheet" href="./css/all.min.css">
+  <script src="./js/all.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+</head>
+
+<body x-data="shoes">
+
+<div class="login">
+<h2 id="logHead">Login</h2>
+<form >
+<label for="name">username: </label><input type="text"   x-model="username"/><br/>
+<label for="password">password: </label><input type="password"  id="password" x-model="password"/><br/>
+<p class="error" x-text="loginError"></p>
+<button @click="userLogin">login</button>
+</form>
+</div>
+<script src="./js/index.js">
+  
+</script>
+
+</body>
+</html>
