@@ -13,7 +13,7 @@
 
 </head>
 
-<body x-data="shoes" x-init="showHistory">
+<body x-data="shoes"  x-init="showHistory">
 <header>
 
   <i id='admin' class="fa-solid  fa-user" onclick="location.href='stock.html'"></i>
@@ -31,7 +31,7 @@
 
     <h1 id="heading">Balo's Shoes</h1>
         
-    <div class="orderHistory">
+    <div class="orderHistory" >
         <h3 id="order">Your Order History</h3>
         <template x-for="order in historyOrders">
         <p><span x-text="order.brand"> </span> <span x-text="order.size"> </span> <span x-text="order.color"></span>

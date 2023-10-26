@@ -13,7 +13,7 @@
 
 </head>
 
-<body x-data="shoes" x-init="firstLoad">
+<body x-data="shoes" x-init="createCart">
 <header>
 
     <i id='admin' class="fa-solid  fa-user" onclick="location.href='stock.html'"></i>
@@ -63,8 +63,8 @@
                 <option>Blue</option>
             </select>
             <button type="submit" id="search" x-on:click="showShoes">search</button>
-            <div id="display" x-show="displayShoes">
-                <h2>Your Search Results</h2>
+            <div id="display">
+             
                 <div class="products" >
                     <template x-for="shoe in allShoes">
                         <div class="item">
