@@ -65,7 +65,7 @@
             <button type="submit" id="search" x-on:click="showShoes">search</button>
             <div id="display">
              
-                <div class="products" >
+                <div class="products" x-init="showShoes">
                     <template x-for="shoe in allShoes">
                         <div class="item">
                             <div>

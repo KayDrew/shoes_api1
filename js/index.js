@@ -21,7 +21,7 @@ document.addEventListener("alpine:init", () => {
             price:0,
             image:"",
             cart_code:localStorage.getItem("code"),
-            username:"Eugene",
+            username:"Neo",
             addMessage:"",
             historyOrders:[],
             showAmount:true,
@@ -40,6 +40,7 @@ createCart(){
       axios.get('https://shoes-catalogue-api.onrender.com/api/shoes/create?username='+this.username).then(result=>{
 
    let res=result.data.cart_code;
+   console.log(res)
     localStorage.setItem("code",res);
  
       
