@@ -19,11 +19,13 @@
 <div class="login">
 <h2 id="logHead">Login</h2>
 <form >
-<label for="name">username: </label><input type="text"   disabled value="admin"/><br/>
-<label for="password">password: </label><input type="password"  id="password" x-model="password"/><br/>
-<p class="error" x-text="loginError"></p>
-<button @click="userLogin">login</button>
+<label for="name">username: </label><input type="text" id="name"  disabled value="admin"/><br/>
+<label for="password">password: </label><input type="password"  id="password" x-model="adminPassword"/><br/>
+<p class="error" x-text="adminError"></p>
+
 </form>
+<button @click="getPassword; setTimeout(function(){
+	adminError='';},3000)">Login</button>
 </div>
 <script src="./js/index.js">
   

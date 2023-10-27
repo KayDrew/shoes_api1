@@ -8,6 +8,7 @@ document.addEventListener("alpine:init", () => {
             brand:"",
             size:0,
             color:"",
+            adminPassword:'',
             displayShoes:true,
             totalItems:0,
             showCheckout:true,
@@ -20,10 +21,11 @@ document.addEventListener("alpine:init", () => {
             price:0,
             image:"",
             cart_code:localStorage.getItem("code"),
-            username:"Thato",
+            username:"Eugene",
             addMessage:"",
             historyOrders:[],
             showAmount:true,
+            adminError:"",
            
          
 
@@ -44,6 +46,42 @@ createCart(){
       });
 
 
+},
+
+
+getPassword(){
+
+  
+if(this.adminPassword){
+  axios.get('https://shoes-catalogue-api.onrender.com/api/shoes/admin/Admin').then(result=>{
+
+let password=result.data.password;
+console.log(password)
+
+
+  if(this.adminPassword==password){
+
+    this.adminError="";
+    location.href="stock.html";
+
+  }
+
+  else{
+    this.adminError="Your password is incorrect";
+  }
+}
+
+  );
+
+}
+
+
+else{
+  
+  this.adminError="Please enter a password";
+}
+
+console.log(this.adminError)
 },
 
 addToCart(shoesId){
