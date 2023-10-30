@@ -40,7 +40,7 @@ createCart(){
       axios.get('https://shoes-catalogue-api.onrender.com/api/shoes/create?username='+this.username).then(result=>{
 
    let res=result.data.cart_code;
-   console.log(res)
+  
     localStorage.setItem("code",res);
  
       
@@ -57,7 +57,7 @@ if(this.adminPassword){
   axios.get('https://shoes-catalogue-api.onrender.com/api/shoes/admin/Admin').then(result=>{
 
 let password=result.data.password;
-console.log(password)
+
 
 
   if(this.adminPassword==password){
@@ -82,8 +82,9 @@ else{
   this.adminError="Please enter a password";
 }
 
-console.log(this.adminError)
 },
+
+
 
 addToCart(shoesId){
 
@@ -119,7 +120,6 @@ addTotal(){
   
   this.cartTotal=total;
   this.totalItems=quan;
-  console.log(this.totalItems)
 },
 
 
@@ -127,14 +127,21 @@ pastOrders(shoesId){
 
   axios.post('https://shoes-catalogue-api.onrender.com/api/shoes/history',{'shoesId':shoesId,'cart_code':this.cart_code}).then(result=>{
 
-
-  console.log(result.data)
   });
 
 
 },
 
 
+deleteSold(shoesId){
+
+
+
+  axios.post('https://shoes-catalogue-api.onrender.com/api/shoes/sold',{'id':shoesId}).then(result=>{
+
+  console.log(result);
+  });
+},
 
 
 
@@ -143,7 +150,7 @@ showHistory(){
   axios.get('https://shoes-catalogue-api.onrender.com/api/shoes/showHistory/cart/'+this.cart_code).then(result=>{
  
 this.historyOrders=result.data.items;
-console.log(this.historyOrders)
+
 
 
 }
@@ -432,6 +439,7 @@ else{
     var id=shoe.id;
    
     this.pastOrders(id);
+    this.deleteSold(id);
   }
             
   axios.post('https://shoes-catalogue-api.onrender.com/api/shoes/pay').then(result=>{
@@ -440,6 +448,7 @@ else{
   this.cartTotal=0;
   this.showInput=false;
   this.empty=true;
+
   this.getCart();
 
   }); 
