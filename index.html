@@ -13,7 +13,7 @@
 
 </head>
 
-<body x-data="shoes">
+<body x-data="shoes" x-init="showShoes">
 <header>
 
     <i id='admin' class="fa-solid  fa-user" onclick="location.href='adminLogin.html'"></i>
@@ -65,7 +65,7 @@
             <button type="submit" id="search" x-on:click="showShoes">search</button>
             <div id="display">
              
-                <div class="products" x-init="showShoes">
+                <div class="products">
                     <template x-for="shoe in allShoes">
                         <div class="item">
                             <div>
