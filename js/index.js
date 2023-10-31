@@ -463,6 +463,7 @@ else{
 
 
 init(){
+  this.showShoes();
   this.createCart();
 }
 
