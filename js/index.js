@@ -157,6 +157,7 @@ showHistory(){
   axios.get('https://shoes-catalogue-api.onrender.com/api/shoes/showHistory/cart/'+this.cart_code).then(result=>{
  
 this.historyOrders=result.data.items;
+console.log(this.historyOrders);
 
 
 
