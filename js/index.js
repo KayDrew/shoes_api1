@@ -217,7 +217,7 @@ remove(shoesId,price){
 },
 
           
-          showShoes(){
+        async  showShoes(){
 
             this.brand= document.querySelector('#brand').value;
             this.size=document.querySelector('#size').value;
@@ -227,12 +227,9 @@ remove(shoesId,price){
             if(this.brand=="All" && this.size=="All" && this.color=="All"){
 
              
-              axios.get('https://shoes-catalogue-api.onrender.com/api/shoes').then(result=>{
+            let result=await  axios.get('https://shoes-catalogue-api.onrender.com/api/shoes');
                 this.allShoes=result.data.shoes;
-                
-              console.log(this.allShoes);
-
-              })
+              
            
               }
 
