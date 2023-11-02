@@ -88,6 +88,13 @@ else{
 
 addToCart(shoesId){
 
+  if(!Number.isInteger(this.cart_code)){
+
+    this.createCart();
+    console.log("created new cart");
+
+  }
+
   axios.post('https://shoes-catalogue-api.onrender.com/api/shoes/addToCart',{'cart_code':this.cart_code,'shoesId':shoesId,'qty':this.qty}).then((result)=>{
     
   this.getCart();
@@ -462,10 +469,8 @@ else{
 },
 
 
-init(){
-  this.showShoes();
-  this.createCart();
-}
+
+  
 
 
  }  
