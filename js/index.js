@@ -21,13 +21,14 @@ document.addEventListener("alpine:init", () => {
             price:0,
             image:"",
             cart_code:localStorage.getItem("code"),
-            username:"Neo",
+            username:localStorage.getItem("name"),
             addMessage:"",
             historyOrders:[],
             showAmount:true,
             adminError:"",
             regex :/^([a-zA-Z]{2,})$/,
             stock:[],
+            loginError:"",
            
          
 
@@ -39,14 +40,42 @@ createCart(){
 
   localStorage.clear();
 
+
+  if(this.username){
+
+    if(this.regex.test(this.username)){
+
+      localStorage.setItem("name",this.username);
+
       axios.get('https://shoes-catalogue-api.onrender.com/api/shoes/create?username='+this.username).then(result=>{
 
    let res=result.data.cart_code;
+
   
     localStorage.setItem("code",res);
+    console.log(this.cart_code);
+    this.loginError="";
+
+    if(Number.isInteger(this.cartTotal)){
+
+      location.href="index.html";
+    }
  
       
       });
+    }
+
+    else{
+      this.username="";
+      this.loginError="Please enter a valid name";
+    }
+
+    }
+    else{
+      
+      this.username="";
+      this.loginError="Please enter a name";
+    }
 
 
 },
@@ -86,16 +115,24 @@ else{
 
 },
 
+logout(){
 
+  localStorage.clear();
+  location.href="index.html";
+},
 
 addToCart(shoesId){
 
-  if(!Number.isInteger(this.cart_code)){
+  console.log(this.cart_code)
+  console.log(this.username)
 
-    this.createCart();
-    console.log("created new cart");
+  if(!this.username){
+
+    location.href="user.html"
+ 
 
   }
+  else{
 
   axios.post('https://shoes-catalogue-api.onrender.com/api/shoes/addToCart',{'cart_code':this.cart_code,'shoesId':shoesId,'qty':this.qty}).then((result)=>{
     
@@ -105,6 +142,8 @@ this.addTotal();
 
  
   });
+
+}
 },
 
 
@@ -176,7 +215,7 @@ console.log(this.historyOrders);
 
 getCart(){
 
-  axios.get('https://shoes-catalogue-api.onrender.com/api/shoes/cartItems').then(result=>{
+  axios.get('https://shoes-catalogue-api.onrender.com/api/shoes/cartItems/cart/'+this.cart_code).then(result=>{
 
 
   this.cartItems=result.data.items;
