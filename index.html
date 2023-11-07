@@ -24,9 +24,12 @@
     <i id='home' class="fa-solid  fa-home" onclick="location.href='index.html'"></i>
 
 
-
     <div class="icon">
+        
         <i id="cart" class="fa-solid fa-cart-shopping" onclick="location.href='cart.html'" ></i>
+        
+<p x-text="count" style="color: orangered;font-size:11px;border: 1px solid orangered;margin-top:-15px;
+border-radius: 40%;margin-right: -4px;padding: 4px;"></p>
     </div>
 </header>
 
@@ -77,13 +80,10 @@
                     <div><span x-text="shoe.color"></span></div>
                 <div><span>R</span> <span x-text="shoe.price"></span></div>
             <div> <span>stock:</span> <span class="inStock" x-text="shoe.in_stock"></span></div>
-        <div>  <button x-on:click="addToCart(shoe.id)">Add To Cart</button></div>
+        <div>  <button x-on:click="addToCart(shoe.id);setTimeout(function(){
+            addAlert='';},3000);">Add To Cart</button></div>
                             </div>
                         </div>
-                        <span x-text="shoe.brand"></span>
-                        <span x-text="shoe.size"></span>
-                        <span x-text="shoe.color"></span>
-                        <span x-text="shoe.price"></span>
                     </template>
                 </div>
             </div>

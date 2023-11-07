@@ -29,6 +29,8 @@ document.addEventListener("alpine:init", () => {
             regex :/^([a-zA-Z]{2,})$/,
             stock:[],
             loginError:"",
+            addAlert:"",
+            count:0,
            
          
 
@@ -140,6 +142,7 @@ addToCart(shoesId){
 
 this.addTotal();
 
+this.addAlert="Added to cart"
  
   });
 
@@ -198,8 +201,6 @@ showHistory(){
   axios.get('https://shoes-catalogue-api.onrender.com/api/shoes/showHistory/cart/'+this.cart_code).then(result=>{
  
 this.historyOrders=result.data.items;
-console.log(this.historyOrders);
-
 
 
 }
@@ -219,6 +220,17 @@ getCart(){
 
 
   this.cartItems=result.data.items;
+  let quan=0;
+
+  for(let i=0;i<this.cartItems.length;++i){
+
+    var shoe= this.cartItems[i];
+    quan+=shoe.qty;
+   
+
+  }
+  this.count=quan;
+  console.log(this.count)
   
 
 this.addTotal();
@@ -545,7 +557,9 @@ else{
 },
 
 
-
+init(){
+  this.getCart();
+}
   
 
 
