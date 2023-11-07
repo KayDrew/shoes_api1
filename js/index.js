@@ -31,10 +31,9 @@ document.addEventListener("alpine:init", () => {
             loginError:"",
             addAlert:"",
             count:0,
+          
            
          
-
-
             
         
 createCart(){
@@ -425,6 +424,17 @@ async showStock(){
        if(cost>0 && quantity>0){
         
         if(Number.isInteger(quantity)){
+
+          for(let i=0;i<this.allShoes.length;++i){
+
+            var shoe=this.allShoes[i];
+
+            if(this.brand==shoe.brand && this.size==shoe.size && this.color==shoe.color){
+
+
+
+            }
+          }
 
           this.addMessage="";
            
