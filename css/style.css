@@ -22,19 +22,33 @@ header{
 
 .container1{
 	
-	margin: 0 auto;
-margin-top: 5%;
     padding: 20px;
-    width: 80%;
-    box-shadow:0.7px 0.7px 1.5px 1.5px rgba(0,0,0,0.4);
     display: block;    
     border-radius: 5px;
+    font-size: small;
 }
 
 .products img{
 
     width: 90%;
 }
+
+.oldStock{
+    border-left: 2px solid rgb(219, 219, 219);
+}
+
+.newStock{
+
+    background-color:rgb(247, 246, 242);
+}
+
+
+
+#stockBody table{
+    width: 60%;
+    padding: 10px;
+}
+
 
 .cart button{
     border: none;
@@ -44,6 +58,10 @@ margin-top: 5%;
     border-radius:13px;
 }
 
+.oldStock input{
+
+    width: 80px;
+}
 
 #display{
 
@@ -51,6 +69,15 @@ margin-top: 5%;
   
 }
 
+th{
+    font-size: small;
+}
+
+td{
+   
+    padding: 5px;
+    font-size: 12px;
+}
 
 .login{
     width: 60%;
@@ -102,15 +129,19 @@ margin-top: 5%;
     margin-left: 25%;
 }
 
-#addBrand, #addSize, #addColor{
-  width: 60%;
-  padding: 2px;
+#addBrand, #addSize, #addColor,#price,#qty{
+  width: 120px;
+
   margin-bottom: 10px;
 }
 
 #addSize, #price{
 	margin-left: 7px;
 margin-bottom: 10px;
+}
+
+#addBrand{
+    margin-bottom: 10px;
 }
 
 #qty{
@@ -332,7 +363,7 @@ box-shadow:0.7px 0.7px 2px 2px grey;
 }
 
 #add{
-width: 60%;
+width: 130px;
 padding:5px;
 margin-left: 44px;
 background-color: rgba(0,0,0,0.9);
@@ -358,6 +389,15 @@ margin-top: 5%;
 }
 
 
+
+#stockBody{
+
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+
+
 .container{
     
     width: 80%;
@@ -365,7 +405,13 @@ margin-top: 5%;
 }
 }
 
-
+#updateBtn{
+    background-color: rgb(43, 42, 42);
+    color: whitesmoke;
+    font-size: small;
+    padding: 3px;
+    border-radius: 3px;
+}
 
 @media screen and (max-width:799px){
 
@@ -374,7 +420,14 @@ margin-top: 5%;
    
  }
 
+ #addBrand, #addSize, #addColor,#price,#qty{
+    width: 200px;
  
+  }
+
+  #add{
+    width: 220px;
+  }
 .login button {
 
     font-size: 0.8em;

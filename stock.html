@@ -26,19 +26,14 @@
       <i id="cart" class="fa-solid fa-cart-shopping" onclick="location.href='cart.html'"></i>
   </div>
 </header>
-<body x-data="shoes" >
+
+<body x-data="shoes"  >
+  <div id="stockBody">
+  <div class="newStock">
     <h2>Add New Stock</h2>
     <p x-text="addMessage" id="addMessage"></p>
     <div class="container1">
       
-      <span>Brand: </span>
-      <select id="addBrand">
-         
-          <option>Litez</option>
-          <option>Zapper</option>
-          <option>Stuph</option>
-          <option>Moo</option>
-      </select><br/>
       
       <span>Size: </span>  
       <select id="addSize">
@@ -58,13 +53,44 @@
           <option>Blue</option>
       </select> <br/>
      
+      <span>Brand: </span>
+<input type="text" id="addBrand" placeholder="Litez" x-model="brand"/><br/>
      
       <span>Price:</span><input type="number" x-model="price" id="price"/><br/>
       <span>Qty: </span>      <input type="number" x-model="qty" id="qty"/><br/><br/>
       <button x-on:click="addStock" id="add" type="submit">Add</button>
-    
+    </div>
       </div>
-    </body>
+ <div class="oldStock" x-init="showStock">
+  <h2>Update Stock</h2>
+  <table>
+    <tr> 
+    <th>Brand</th>
+    <th>Color</th>
+    <th>Size</th>
+    <th>Stock</th>
+    <th>New Quantity</th>
+  </tr>
+  <template x-for="shoe in stock">
+    
+  
+      <tr>
+        
+        <td x-text="shoe.brand"></td>
+    
+        <td x-text="shoe.color"></td>
+        <td x-text="shoe.size"></td>
+        <td x-text="shoe.in_stock"></td> 
+        <td><input type="number" placeholder="new quantity"/></td>
+        <td> <button  @click="updateStock(shoe.id)" id="updateBtn">update</button></td>
+                       
+       
+      </tr>
+    </template>
+    </table>
+  
+  </div>
+ </div>
   </body>
   <script src="./js/index.js">
   

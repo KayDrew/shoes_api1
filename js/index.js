@@ -26,6 +26,8 @@ document.addEventListener("alpine:init", () => {
             historyOrders:[],
             showAmount:true,
             adminError:"",
+            regex :/^([a-zA-Z]{2,})$/,
+            stock:[],
            
          
 
@@ -217,6 +219,17 @@ remove(shoesId,price){
 
 },
 
+
+
+async showStock(){
+
+  let result=await  axios.get('https://shoes-catalogue-api.onrender.com/api/shoes');
+  this.stock=result.data.shoes;
+
+
+
+},
+
           
         async  showShoes(){
 
@@ -325,14 +338,16 @@ remove(shoesId,price){
 
 
            addStock(){
-            
-            let addBrand= document.querySelector('#addBrand').value;
+            let addBrand="";
+
             let addSize=document.querySelector('#addSize').value;
             let addColor=document.querySelector('#addColor').value;
             let quantity= Number(this.qty);
             let cost= Number(this.price);
             let postSize=Number(addSize);
             
+
+          
            
            if(addColor=="Black"){
               this.image="black.png";
@@ -348,9 +363,19 @@ remove(shoesId,price){
             this.image="green.jpeg";
       }
 
+
+      if(this.brand){
+
+        
+        if(this.regex.test(this.brand)){
+           
+          addBrand=this.brand
+
        if(cost>0 && quantity>0){
         
         if(Number.isInteger(quantity)){
+
+          this.addMessage="";
            
             axios.post("https://shoes-catalogue-api.onrender.com/api/shoes",{'color':addColor,'brand':addBrand,'price':cost,'size':postSize,'in_stock':quantity,'image':this.image}).then((result)=>{
            this.addMessage=result.data.message;
@@ -369,7 +394,21 @@ remove(shoesId,price){
 
             this.addMessage="Cost and quantity cannot be Zero";
 
-          }     
+          }  
+
+
+        }
+
+        else{
+          this.addMessage="Please enter a valid brand name";
+        }
+          
+        }
+
+        else{
+
+          this.addMessage="Please , enter brand name";
+        }
           
           const addMess= document.querySelector("#addMessage");
           
