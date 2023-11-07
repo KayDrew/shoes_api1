@@ -17,6 +17,8 @@ document.addEventListener("alpine:init", () => {
             message:"",
             showInput:false,
             payAmount:0,
+            qty1:0,
+            price1:0,
             qty:1,           
             price:0,
             image:"",
@@ -387,7 +389,24 @@ async showStock(){
            }, 
 
 
+           
+           updateStock(){
+
+            let quantity= Number(this.qty1);
+            let cost= Number(this.price1);
+           
+            
+
+            axios.post("https://shoes-catalogue-api.onrender.com/api/shoes/update",{qty:quantity,price:cost,shoesId:shoe.id}).then(result=>{
+               
+            console.log(result.data);
+            })
+           },
+
+
            addStock(){
+
+            
             let addBrand="";
 
             let addSize=document.querySelector('#addSize').value;
@@ -425,23 +444,37 @@ async showStock(){
         
         if(Number.isInteger(quantity)){
 
-          for(let i=0;i<this.allShoes.length;++i){
+          for(let i=0;i<this.stock.length;++i){
 
-            var shoe=this.allShoes[i];
+            var shoe=this.stock[i];
 
-            if(this.brand==shoe.brand && this.size==shoe.size && this.color==shoe.color){
+            console.log(shoe.brand+shoe.color+shoe.size)
+            console.log(addBrand+addColor+addSize)
 
+            if(addBrand==shoe.brand && addSize==shoe.size && addColor==shoe.color){
 
+              axios.post("https://shoes-catalogue-api.onrender.com/api/shoes/update",{qty:quantity,price:cost,shoesId:shoe.id}).then(result=>{
+                this.addMessage="Successfully updated";
+
+            
+              });
+      
+              break;
 
             }
           }
 
-          this.addMessage="";
+      if(this.addMessage!="Successfully updated"){
+
+        
            
             axios.post("https://shoes-catalogue-api.onrender.com/api/shoes",{'color':addColor,'brand':addBrand,'price':cost,'size':postSize,'in_stock':quantity,'image':this.image}).then((result)=>{
            this.addMessage=result.data.message;
-           
+           this.addMessage="Successfully added stock";
+          
+
             });
+          }
             
             }
             else{
@@ -485,7 +518,7 @@ async showStock(){
                addMess.style.visibility="visible";     
           
        }
-          
+       this.showStock();
           
            },
            

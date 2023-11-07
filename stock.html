@@ -93,10 +93,10 @@ border-radius: 40%;margin-right: -4px;padding: 4px;"></p>
         <td x-text="shoe.color"></td>
         <td x-text="shoe.size"></td>
         <td x-text="shoe.in_stock"></td> 
-        <td><input type="number" placeholder="qty"/></td>
+        <td><input type="number" placeholder="qty" x-model="qty1"/></td>
         <td x-text="shoe.price"></td> 
-       <td> <input type="number" x-model="price"/></td>
-        <td> <button  @click="updateStock(shoe.id)" id="updateBtn">update</button></td>
+       <td> <input type="number" x-model="price1"/></td>
+        <td> <button  @click="updateStock()" id="updateBtn">update</button></td>
                        
        
       </tr>
