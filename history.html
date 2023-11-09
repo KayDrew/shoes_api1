@@ -27,12 +27,18 @@
   <div class="icon">
       <i id="cart" class="fa-solid fa-cart-shopping" onclick="location.href='cart.html'"></i>
       
-<p x-text="count" style="color: orangered;font-size:11px;border: 1px solid orangered;margin-top:-19px;
+<p x-text="count" style="color: orangered;font-size:11px;border: 1px solid orangered;margin-top:-14px;
 border-radius: 40%;margin-right: -4px;padding: 4px;"></p>
   </div>
 </header>
 
-<button @click="logout" id="logout">Logout</button>
+<button @click="logout" class="logout" style=" margin-left: 80%;
+padding: 5px;
+background-color: red;
+color: rgb(47, 45, 45);
+margin-top: 5px;
+border:none;
+border-radius: 3px;">Logout</button>
         
     <div class="orderHistory" >
         <h3 id="order">Your Order History</h3>

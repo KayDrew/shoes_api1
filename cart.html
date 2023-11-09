@@ -30,14 +30,20 @@
   <div class="icon">
       <i id="cart" class="fa-solid fa-cart-shopping" onclick="location.href='cart.html'"></i>
       
-<p x-text="count" style="color: orangered;font-size:11px;border: 1px solid orangered;margin-top:-15px;
+<p x-text="count" style="color: orangered;font-size:11px;border: 1px solid orangered;margin-top:-14px;
 border-radius: 40%;margin-right: -4px;padding: 4px;"></p>
   </div>
 </header>
   <div>
     
  
-    <button @click="logout" id="logout">Logout</button>
+<button @click="logout" class="logout" style=" margin-left: 80%;
+padding: 5px;
+background-color: red;
+color: rgb(47, 45, 45);
+margin-top: 5px;
+border:none;
+border-radius: 3px;">Logout</button>
   <h2 style="text-align:center; padding-top:20px; padding-bottom: 30px;font-family:monospace; font-size:1.8em;">Your Cart</h2>
 
     <div class="cart" >
