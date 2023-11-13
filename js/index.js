@@ -35,7 +35,8 @@ document.addEventListener("alpine:init", () => {
             addAlert:"",
             count:0,
             name:"",
-         
+         resultItems:[],
+        
            
          
 
@@ -132,6 +133,7 @@ else{
 
 addToCart(shoesId){
 
+  
 
   if(!this.cart_code){
 
@@ -148,11 +150,11 @@ addToCart(shoesId){
 
   axios.post('https://shoes-catalogue-api.onrender.com/api/shoes/addToCart',{'cart_code':this.cart_code,'shoesId':shoesId,'qty':1}).then((result)=>{
 
-  
-  console.log(result)
+ 
   this.getCart();
 
 this.addTotal();
+
 
 
  
@@ -318,7 +320,26 @@ console.log(result.data);
 
              
             let result=await  axios.get('https://shoes-catalogue-api.onrender.com/api/shoes');
-                this.allShoes=result.data.shoes;
+
+                let res=result.data.shoes;
+                this.resultItems=[];
+                for(let i=0;i<res.length;++i){
+
+                  var shoe=res[i];
+                   
+
+                  if(shoe.in_stock>0){
+
+                    this.resultItems.push(shoe);
+                  
+                  }                 
+             
+                  
+           
+                }
+
+
+                this.allShoes=this.resultItems;
               
            
               }
@@ -327,8 +348,25 @@ console.log(result.data);
 
                 axios.get('https://shoes-catalogue-api.onrender.com/api/shoes/brand/'+this.brand
                 ).then(result => {
+                  let res=result.data.shoes;
+                  this.resultItems=[];
+                  for(let i=0;i<res.length;++i){
+  
+                    var shoe=res[i];
+                     
+  
+                    if(shoe.in_stock>0){
+  
+                      this.resultItems.push(shoe);
+                    
+                    }                 
+               
+                    
+             
+                  }
 
-               this.allShoes=result.data.shoes;
+
+                this.allShoes=this.resultItems;
       
            
                  } );
@@ -340,10 +378,30 @@ console.log(result.data);
                 axios.get('https://shoes-catalogue-api.onrender.com/api/shoes/size/'+this.size
                 ).then(result => {
 
-               this.allShoes=result.data.shoes;
-          
+                  let res=result.data.shoes;
+                  this.resultItems=[];
+
+                for(let i=0;i<res.length;++i){
+
+                  var shoe=res[i];
+                   
+
+                  if(shoe.in_stock>0){
+
+                    this.resultItems.push(shoe);
+                  
+                  }                 
+             
+                  
+           
+                }
+  
+  
+                  this.allShoes=this.resultItems;
            
                  } );
+
+         
 
               }
            
@@ -353,8 +411,29 @@ console.log(result.data);
                 axios.get('https://shoes-catalogue-api.onrender.com/api/shoes/color/'+this.color
                 ).then(result => {
 
-               this.allShoes=result.data.shoes;
+                  
+                  let res=result.data.shoes;
+                  this.resultItems=[];
+                  
+                  for(let i=0;i<res.length;++i){
+  
+                    var shoe=res[i];
+                     
+  
+                    if(shoe.in_stock>0){
+  
+                      this.resultItems.push(shoe);
+                    
+                    }                 
+               
+                    
+             
+                  }
+  
+  
+                  this.allShoes=this.resultItems;
 
+                  console.log(this.allShoes)
                  
                  } );
 
@@ -366,11 +445,30 @@ console.log(result.data);
                 axios.get('https://shoes-catalogue-api.onrender.com/api/shoes/brand/'+this.brand+'/size/'+this.size
                 ).then(result => {
 
-               this.allShoes=result.data.shoes;
-         
-          
+                  let res=result.data.shoes;
+                  this.resultItems=[];
+                  for(let i=0;i<res.length;++i){
+  
+                    var shoe=res[i];
+                     
+  
+                    if(shoe.in_stock>0){
+  
+                      this.resultItems.push(shoe);
+                    
+                    }                 
+               
+                    
+             
+                  }
+  
+  
+                  this.allShoes=this.resultItems;
+                  
+                  console.log(this.allShoes)
            
-                 } );
+                 } )
+   
 
               }
 
@@ -380,10 +478,27 @@ console.log(result.data);
 
                 axios.get('https://shoes-catalogue-api.onrender.com/api/shoes/brand/'+this.brand+'/color/'+this.color
                 ).then(result => {
-
-               this.allShoes=result.data.shoes;
-              
+                  let res=result.data.shoes;
+                  this.resultItems=[];
+                  for(let i=0;i<res.length;++i){
+  
+                    var shoe=res[i];
+                     
+  
+                    if(shoe.in_stock>0){
+  
+                      this.resultItems.push(shoe);
+                    
+                    }                 
+               
+                    
+             
+                  }
+  
+  
+                  this.allShoes=this.resultItems;
            
+                  console.log(this.allShoes)
                  } );
 
               }
@@ -393,20 +508,56 @@ console.log(result.data);
 
                 axios.get('https://shoes-catalogue-api.onrender.com/api/shoes/size/'+this.size+'/color/'+this.color
                 ).then(result => {
-
-               this.allShoes=result.data.shoes;
+                  let res=result.data.shoes;
+                  this.resultItems=[];
+                  for(let i=0;i<res.length;++i){
+  
+                    var shoe=res[i];
+                     
+  
+                    if(shoe.in_stock>0){
+  
+                      this.resultItems.push(shoe);
+                    
+                    }                 
+               
+                    
              
+                  }
+  
+  
+                  this.allShoes=this.resultItems;
            
+                  console.log(this.allShoes)
                  } );
 
               }   
               else{
                 axios.get('https://shoes-catalogue-api.onrender.com/api/shoes/brand/'+this.brand+'/size/'+this.size+'/color/'+this.color
                 ).then(result => {
+                  let res=result.data.shoes;
 
-               this.allShoes=result.data.shoes;
+                  this.resultItems=[];
+
+                  for(let i=0;i<res.length;++i){
+  
+                    var shoe=res[i];
+                     
+  
+                    if(shoe.in_stock>0){
+  
+                      this.resultItems.push(shoe);
+                    
+                    }                 
+               
+                    
              
+                  }
+  
+  
+                  this.allShoes=this.resultItems;
            
+                  console.log(this.allShoes)
                  } );
               }
 
@@ -512,6 +663,7 @@ this.showCheckout=false;
 this.showAmount=true;
 },
 
+
 pay(){
   
   
@@ -545,6 +697,7 @@ else{
   this.empty=true;
 
   this.getCart();
+  this.showShoes();
 
   }); 
     
