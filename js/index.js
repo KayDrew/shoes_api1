@@ -35,7 +35,8 @@ document.addEventListener("alpine:init", () => {
             addAlert:"",
             count:0,
             name:"",
-         resultItems:[],
+            resultItems:[],
+            onHand:0,
         
            
          
@@ -43,10 +44,10 @@ document.addEventListener("alpine:init", () => {
 
             
         
-createCart(){
+    createCart(){
 
 
-  localStorage.clear();
+    localStorage.clear();
 
 
   if(this.name){
@@ -131,9 +132,10 @@ else{
 },
 
 
-addToCart(shoesId){
+async addToCart(shoesId){
 
-  
+  console.log(shoesId)
+
 
   if(!this.cart_code){
 
@@ -148,17 +150,71 @@ addToCart(shoesId){
     
     this.cart_code=Number(this.cart_code);
 
-  axios.post('https://shoes-catalogue-api.onrender.com/api/shoes/addToCart',{'cart_code':this.cart_code,'shoesId':shoesId,'qty':1}).then((result)=>{
+    
+    var result=[];
+
+      result= await axios.get('https://shoes-catalogue-api.onrender.com/api/shoes/id/'+shoesId);
+     this.onHand=result.data.quantity.in_stock;
+
+    this.getCart()
+
+
+    if(this.cartItems.length==0){
+      axios.post('https://shoes-catalogue-api.onrender.com/api/shoes/addToCart',{'cart_code':this.cart_code,'shoesId':shoesId,'qty':1}).then((result)=>{
 
  
-  this.getCart();
+      this.getCart();
+      
+      this.addTotal();
+      
+        });
 
-this.addTotal();
+    }
+
+    else{
+
+    for(let i=0;i<this.cartItems.length;++i){
+
+      var item= this.cartItems[i];
+
+      if(item.id==shoesId){
+
+        if(item.qty>=this.onHand){
+          alert("Not enough stock");
+          break;
+        }
+
+        else{
 
 
+          axios.post('https://shoes-catalogue-api.onrender.com/api/shoes/addToCart',{'cart_code':this.cart_code,'shoesId':shoesId,'qty':1}).then((result)=>{
 
  
-  });
+          this.getCart();
+          
+          this.addTotal();
+          
+          
+            });
+        }
+
+      }
+
+
+      else{
+
+        axios.post('https://shoes-catalogue-api.onrender.com/api/shoes/addToCart',{'cart_code':this.cart_code,'shoesId':shoesId,'qty':1}).then((result)=>{
+
+ 
+        this.getCart();
+        
+        this.addTotal();
+        
+          });
+      }
+    }
+
+  }
 
 }
 },
@@ -697,7 +753,7 @@ else{
   this.empty=true;
 
   this.getCart();
-  this.showShoes();
+
 
   }); 
     
