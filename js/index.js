@@ -36,7 +36,8 @@ document.addEventListener("alpine:init", () => {
             count:0,
             name:"",
             resultItems:[],
-            onHand:0,
+            stockItems:[],
+            isAbove:false,
         
            
          
@@ -134,7 +135,7 @@ else{
 
 async addToCart(shoesId){
 
-  console.log(shoesId)
+
 
 
   if(!this.cart_code){
@@ -154,15 +155,27 @@ async addToCart(shoesId){
     var result=[];
 
       result= await axios.get('https://shoes-catalogue-api.onrender.com/api/shoes/id/'+shoesId);
-     this.onHand=result.data.quantity.in_stock;
+     let res=result.data.result;
+
+     if(res==true || res==false){
+
+      this.isAbove=res;
+   }
+
+   else{
+
+     this.isAbove=false;
+   }
+     console.log(this.isAbove);
+
 
     this.getCart()
 
 
     if(this.cartItems.length==0){
+
       axios.post('https://shoes-catalogue-api.onrender.com/api/shoes/addToCart',{'cart_code':this.cart_code,'shoesId':shoesId,'qty':1}).then((result)=>{
 
- 
       this.getCart();
       
       this.addTotal();
@@ -173,48 +186,29 @@ async addToCart(shoesId){
 
     else{
 
-    for(let i=0;i<this.cartItems.length;++i){
-
-      var item= this.cartItems[i];
-
-      if(item.id==shoesId){
-
-        if(item.qty>=this.onHand){
-          alert("Not enough stock");
-          break;
-        }
-
-        else{
-
-
-          axios.post('https://shoes-catalogue-api.onrender.com/api/shoes/addToCart',{'cart_code':this.cart_code,'shoesId':shoesId,'qty':1}).then((result)=>{
-
- 
-          this.getCart();
-          
-          this.addTotal();
-          
-          
-            });
-        }
-
-      }
-
-
-      else{
+      if(!this.isAbove){
 
         axios.post('https://shoes-catalogue-api.onrender.com/api/shoes/addToCart',{'cart_code':this.cart_code,'shoesId':shoesId,'qty':1}).then((result)=>{
 
- 
         this.getCart();
         
         this.addTotal();
         
           });
-      }
-    }
 
-  }
+      }
+      else{
+
+        alert("not enough")
+      }
+
+
+    
+      }
+
+    
+
+
 
 }
 },
