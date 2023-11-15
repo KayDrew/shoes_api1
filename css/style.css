@@ -9,6 +9,7 @@ header{
     padding-bottom: 10px;
     
 }
+
 .container{
 
     border-left: 8px solid  rgb(106, 106, 110); 
@@ -26,6 +27,10 @@ header{
     display: block;    
     border-radius: 5px;
     font-size: small;
+}
+
+.sweet{
+    background-color: rgb(232, 219, 219);
 }
 
 .products img{

@@ -166,7 +166,6 @@ async addToCart(shoesId){
 
      this.isAbove=false;
    }
-     console.log(this.isAbove);
 
 
     this.getCart()
@@ -199,7 +198,10 @@ async addToCart(shoesId){
       }
       else{
 
-        alert("not enough")
+        swal({title:"Sorry",
+        text:  "Not enough stock available",
+        dangerMode:true,
+      className:"sweet"})
       }
 
 
