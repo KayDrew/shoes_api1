@@ -659,9 +659,7 @@ console.log(result.data);
 
           let currentItem=[];
           let itemId=0;
-        
-
-          
+              
           axios.get('https://shoes-catalogue-api.onrender.com/api/shoes/brand/'+addBrand+'/size/'+addSize+'/color/'+addColor
 
           ).then(result => {
@@ -669,9 +667,10 @@ console.log(result.data);
             currentItem=result.data.shoes;
 
             for(let i=0;i<currentItem.length;++i){
-var item=currentItem[i];
+            
+              var item=currentItem[i];
 
-         itemId=item.id;
+              itemId=item.id;
          
 
             }
@@ -686,13 +685,21 @@ var item=currentItem[i];
           if(currentItem.length<0){
            
             axios.post("https://shoes-catalogue-api.onrender.com/api/shoes",{'color':addColor,'brand':addBrand,'price':cost,'size':postSize,'in_stock':quantity,'image':this.image}).then((result)=>{
-           this.addMessage=result.data.message;
+           
+            this.addMessage=result.data.message;
            
            this.showStock();
             });
           }
 
           else{
+
+            axios.post('https://shoes-catalogue-api.onrender.com/api/shoes/update',{qty:this.qty,shoesId:this.id}).then(result=>{
+
+            this.addMessage=result.data.message;
+            console.log(result.data) 
+          
+            });
             
           }
             
@@ -805,6 +812,19 @@ else{
 
     
 
+
+},
+
+
+async updateStock(shoesId){
+
+  
+  axios.post('https://shoes-catalogue-api.onrender.com/api/shoes/update',{qty:this.qty1,shoesId:shoesId}).then(result=>{
+
+  console.log(result.data)
+
+
+  });
 
 },
 
