@@ -69,7 +69,7 @@ border-radius: 40%;margin-right: -4px;padding: 4px;"></p>
      
       <span>Price:</span><input type="number" x-model="price" id="price"/><br/>
       <span>Qty: </span>      <input type="number" x-model="qty" id="qty"/><br/><br/>
-      <button x-on:click="addStock" id="add" type="submit">Add</button>
+      <button x-on:click="addStock()" id="add" type="submit">Add</button>
     
     </div>
       </div>
@@ -82,8 +82,7 @@ border-radius: 40%;margin-right: -4px;padding: 4px;"></p>
     <th>Size</th>
     <th>Stock</th>
     <th>New Stock</th>
-    <th>Price</th>
-    <th>New Price</th>
+  
   </tr>
   <template x-for="shoe in stock">
     
@@ -96,9 +95,7 @@ border-radius: 40%;margin-right: -4px;padding: 4px;"></p>
         <td x-text="shoe.size"></td>
         <td x-text="shoe.in_stock"></td> 
         <td><input type="number" placeholder="qty" x-model="qty1"/></td>
-        <td x-text="shoe.price"></td> 
-       <td> <input type="number" x-model="price1"/></td>
-        <td> <button  @click="updateStock()" id="updateBtn">update</button></td>
+        <td> <button  @click="updateStock(shoe.id)" id="updateBtn">update</button></td>
                        
        
       </tr>
