@@ -64,11 +64,13 @@ border-radius: 40%;margin-right: -4px;padding: 4px;"></p>
       </select> <br/>
      
       <span>Brand: </span>
+
 <input type="text" id="addBrand" placeholder="Litez" x-model="brand"/><br/>
      
       <span>Price:</span><input type="number" x-model="price" id="price"/><br/>
       <span>Qty: </span>      <input type="number" x-model="qty" id="qty"/><br/><br/>
       <button x-on:click="addStock" id="add" type="submit">Add</button>
+    
     </div>
       </div>
  <div class="oldStock" x-init="showStock">
