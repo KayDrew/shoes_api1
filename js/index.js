@@ -38,6 +38,7 @@ document.addEventListener("alpine:init", () => {
             resultItems:[],
             stockItems:[],
             isAbove:false,
+            id:localStorage.getItem("id"),
         
            
          
@@ -360,6 +361,15 @@ console.log(result.data);
 
 },
 
+     async  showStock(){
+
+      
+      let result=await  axios.get('https://shoes-catalogue-api.onrender.com/api/shoes');
+
+      this.stock=result.data.shoes;
+
+     },
+
           
         async  showShoes(){
 
@@ -375,6 +385,7 @@ console.log(result.data);
 
                 let res=result.data.shoes;
                 this.resultItems=[];
+
                 for(let i=0;i<res.length;++i){
 
                   var shoe=res[i];
@@ -586,7 +597,9 @@ console.log(result.data);
               }   
               else{
                 axios.get('https://shoes-catalogue-api.onrender.com/api/shoes/brand/'+this.brand+'/size/'+this.size+'/color/'+this.color
+
                 ).then(result => {
+
                   let res=result.data.shoes;
 
                   this.resultItems=[];
@@ -643,11 +656,45 @@ console.log(result.data);
        if(cost>0 && quantity>0){
         
         if(Number.isInteger(quantity)){
+
+          let currentItem=[];
+          let itemId=0;
+        
+
+          
+          axios.get('https://shoes-catalogue-api.onrender.com/api/shoes/brand/'+addBrand+'/size/'+addSize+'/color/'+addColor
+
+          ).then(result => {
+
+            currentItem=result.data.shoes;
+
+            for(let i=0;i<currentItem.length;++i){
+var item=currentItem[i];
+
+         itemId=item.id;
+         
+
+            }
+            
+            localStorage.setItem("id",itemId);
+   
+          });
+          
+
+          
+
+          if(currentItem.length<0){
            
             axios.post("https://shoes-catalogue-api.onrender.com/api/shoes",{'color':addColor,'brand':addBrand,'price':cost,'size':postSize,'in_stock':quantity,'image':this.image}).then((result)=>{
            this.addMessage=result.data.message;
            
+           this.showStock();
             });
+          }
+
+          else{
+            
+          }
             
             }
             else{
