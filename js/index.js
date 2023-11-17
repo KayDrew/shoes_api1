@@ -54,12 +54,21 @@ document.addEventListener("alpine:init", () => {
 
   if(this.name){
 
+    this.name=this.name.trim();
+
     if(this.regex.test(this.name)){
 
-      this.username=this.name;                                                                                                                                                          
+      this.username=this.name[0].toUpperCase();
+
+      for(let i=1;i<this.name.length;++i){
+this.username+=this.name[i].toLowerCase();
+
+      }
+console.log(this.username);                                                                                                                                                      
       
       localStorage.setItem("name",this.username);
 
+      console.log(this.username);
 
       axios.get('https://shoes-catalogue-api.onrender.com/api/shoes/create?username='+this.username).then(result=>{
 
@@ -697,7 +706,7 @@ console.log(result.data);
             axios.post('https://shoes-catalogue-api.onrender.com/api/shoes/update',{qty:this.qty,shoesId:this.id}).then(result=>{
 
             this.addMessage=result.data.message;
-            console.log(result.data) 
+          
           
             });
             
@@ -816,15 +825,30 @@ else{
 },
 
 
-async updateStock(shoesId){
+async updateStock(shoesId,qty){
 
-  
+  if(this.qty1<qty){
+
+    swal({title:"Forbidden",
+    text:  "New quantity cannot be less than stock on hand",
+    dangerMode:true,
+  className:"sweet"})
+  }
+
+
+  else{
   axios.post('https://shoes-catalogue-api.onrender.com/api/shoes/update',{qty:this.qty1,shoesId:shoesId}).then(result=>{
 
-  console.log(result.data)
+swal({
+ text: "Updated stock!",
+className:'sweet'}
+)
 
+this.showStock();
 
   });
+
+}
 
 },
 
