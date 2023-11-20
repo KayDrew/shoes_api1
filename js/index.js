@@ -888,7 +888,8 @@ async updateStock(shoesId,qty){
 
 swal({
  text: "Updated stock!",
-className:'sweet'}
+className:'sweet',
+dangerMode:true}
 )
 
 this.showStock();
