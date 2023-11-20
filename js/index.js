@@ -20,7 +20,7 @@ document.addEventListener("alpine:init", () => {
             payAmount:0,
             qty1:0,
             price1:0,
-            qty:1,           
+            qty:0,           
             price:0,
             image:"",
             cart_code:localStorage.getItem("code"),
@@ -39,6 +39,7 @@ document.addEventListener("alpine:init", () => {
             stockItems:[],
             isAbove:false,
             id:localStorage.getItem("id"),
+            addQty:localStorage.getItem("itemQty"),
         
            
          
@@ -64,7 +65,7 @@ document.addEventListener("alpine:init", () => {
 this.username+=this.name[i].toLowerCase();
 
       }
-console.log(this.username);                                                                                                                                                      
+                                                                                                                                                     
       
       localStorage.setItem("name",this.username);
 
@@ -143,10 +144,10 @@ else{
 },
 
 
-async addToCart(shoesId){
+async addToCart(id){
 
 
-
+let shoesId=Number(id)
 
   if(!this.cart_code){
 
@@ -167,6 +168,8 @@ async addToCart(shoesId){
       result= await axios.get('https://shoes-catalogue-api.onrender.com/api/shoes/id/'+shoesId);
      let res=result.data.result;
 
+     console.log(res)
+
      if(res==true || res==false){
 
       this.isAbove=res;
@@ -174,7 +177,7 @@ async addToCart(shoesId){
 
    else{
 
-     this.isAbove=false;
+     this.isAbove=true;
    }
 
 
@@ -640,13 +643,13 @@ console.log(result.data);
 
            addStock(){
             
-            let addBrand= document.querySelector('#addBrand').value;
+            let brand= document.querySelector('#addBrand').value;
             let addSize=document.querySelector('#addSize').value;
             let addColor=document.querySelector('#addColor').value;
             let quantity= Number(this.qty);
             let cost= Number(this.price);
             let postSize=Number(addSize);
-            
+            let addBrand="";
            
            if(addColor=="Black"){
               this.image="black.png";
@@ -662,12 +665,28 @@ console.log(result.data);
             this.image="green.jpeg";
       }
 
+
+      if(brand){
+
+        brand=brand.trim();     
+
+      addBrand=brand[0].toUpperCase();
+
+      for(let i=1;i<brand.length;++i){
+         addBrand+=brand[i].toLowerCase();
+
+      }
+
+
        if(cost>0 && quantity>0){
         
         if(Number.isInteger(quantity)){
 
+          
+
           let currentItem=[];
           let itemId=0;
+          let itemQty=0;
               
           axios.get('https://shoes-catalogue-api.onrender.com/api/shoes/brand/'+addBrand+'/size/'+addSize+'/color/'+addColor
 
@@ -678,18 +697,25 @@ console.log(result.data);
             for(let i=0;i<currentItem.length;++i){
             
               var item=currentItem[i];
+              
 
               itemId=item.id;
+              itemQty=item.in_stock;
          
+     
 
             }
+
             
             localStorage.setItem("id",itemId);
+            
+            localStorage.setItem("itemQty",itemQty);
    
           });
           
 
           
+
 
           if(currentItem.length<0){
            
@@ -703,12 +729,26 @@ console.log(result.data);
 
           else{
 
+            if(this.qty<this.addQty){
+              
+              console.log(this.qty+'qty less than '+this.addQty)
+              swal({title:"Forbidden",
+                    text:  "New quantity cannot be less than stock on hand",
+                   dangerMode:true,
+                   className:"sweet"})
+
+            }
+
+            else{
+
             axios.post('https://shoes-catalogue-api.onrender.com/api/shoes/update',{qty:this.qty,shoesId:this.id}).then(result=>{
 
             this.addMessage=result.data.message;
           
-          
+            this.showStock();
             });
+
+          }
             
           }
             
@@ -726,7 +766,15 @@ console.log(result.data);
 
           }     
           
-          const addMess= document.querySelector("#addMessage");
+  
+      }
+
+      else{
+        this.addMessage="Brand cannot be empty";
+      }
+
+
+              const addMess= document.querySelector("#addMessage");
           
           if(this.addMessage!=""){
           	
@@ -740,7 +788,6 @@ console.log(result.data);
                addMess.style.visibility="visible";     
           
        }
-          
           
            },
            
