@@ -165,7 +165,7 @@ let shoesId=Number(id)
     
     var result=[];
 
-      result= await axios.get('https://shoes-catalogue-api.onrender.com/api/shoes/id/'+shoesId);
+      result= await axios.get('https://shoes-catalogue-api.onrender.com/api/shoes/id/'+shoesId+'/cart_code/'+this.cart_code);
      let res=result.data.result;
 
      console.log(res)
@@ -177,7 +177,7 @@ let shoesId=Number(id)
 
    else{
 
-     this.isAbove=true;
+     this.isAbove=false;
    }
 
 
