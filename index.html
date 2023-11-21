@@ -34,7 +34,7 @@ border-radius: 40%;margin-right: -4px;padding: 4px;"></p>
     </div>
 </header>
 
-<button onclick="location.href='user.html'"
+<button x-show="showLogin" onclick="location.href='user.html'"
 style="
 margin-left: 80%; padding: 5px;
 background-color: red;
@@ -42,7 +42,17 @@ color: rgb(47, 45, 45);
 margin-top: 5px;
 border:none;
 border-radius: 3px;">Login</button>
+
+<button  x-show="showLogout" @click="logout"
+style="
+margin-left: 80%; padding: 5px;
+background-color: red;
+color: rgb(47, 45, 45);
+margin-top: 5px;
+border:none;
+border-radius: 3px;">Logout</button>
     <h1 id="heading">Balo's Shoes</h1>
+
 
     </div>
     <div class="container">

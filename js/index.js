@@ -40,19 +40,19 @@ document.addEventListener("alpine:init", () => {
             isAbove:false,
             id:null,
             addQty:0,
+            showLogin:true,
+            showLogout:false,
          
 
         
            
-         
-
-
+        
             
         
-    createCart(){
+         createCart(){
 
 
-    localStorage.clear();
+          localStorage.clear();
 
 
   if(this.name){
@@ -80,6 +80,8 @@ this.username+=this.name[i].toLowerCase();
       this.cart_code=res;  
   
     localStorage.setItem("code",res);
+
+   
     location.href="index.html";
    
          
@@ -105,9 +107,11 @@ this.username+=this.name[i].toLowerCase();
 },
 
 
+
 logout(){
 
   localStorage.clear();
+  this.showLogin=true;
   location.href="index.html";
 },
 
@@ -308,16 +312,23 @@ getCart(){
   this.empty=true;
   this.showCheckout=false;
 
+    this.showLogin=true;
+    this.showLogout=false;
+    
+
   }
 
   else{
+
+      this.showLogin=false;
+      this.showLogout=true;
+      
 
   axios.get('https://shoes-catalogue-api.onrender.com/api/shoes/cartItems/cart/'+this.cart_code).then(result=>{
   
 
   this.cartItems=result.data.items;
 
- // console.log(result)
   let quan=0;
 
   for(let i=0;i<this.cartItems.length;++i){
@@ -646,6 +657,7 @@ console.log(result.data);
            addStock(){
 
             this.addMessage="";
+            
             let brand= document.querySelector('#addBrand').value;
             let addSize=document.querySelector('#addSize').value;
             let addColor=document.querySelector('#addColor').value;
