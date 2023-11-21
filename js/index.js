@@ -645,7 +645,7 @@ console.log(result.data);
 
            addStock(){
 
-            
+            this.addMessage="";
             let brand= document.querySelector('#addBrand').value;
             let addSize=document.querySelector('#addSize').value;
             let addColor=document.querySelector('#addColor').value;
