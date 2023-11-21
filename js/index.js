@@ -38,8 +38,10 @@ document.addEventListener("alpine:init", () => {
             resultItems:[],
             stockItems:[],
             isAbove:false,
-            id:localStorage.getItem("id"),
-            addQty:localStorage.getItem("itemQty"),
+            id:null,
+            addQty:0,
+         
+
         
            
          
@@ -642,6 +644,7 @@ console.log(result.data);
 
 
            addStock(){
+
             
             let brand= document.querySelector('#addBrand').value;
             let addSize=document.querySelector('#addSize').value;
@@ -677,20 +680,21 @@ console.log(result.data);
 
       }
 
+  
 
        if(cost>0 && quantity>0){
         
         if(Number.isInteger(quantity)){
 
-          
 
           let currentItem=[];
-          let itemId=0;
-          let itemQty=0;
+         let itemId=null;
+         let itemQty=0;
+
               
           axios.get('https://shoes-catalogue-api.onrender.com/api/shoes/brand/'+addBrand+'/size/'+addSize+'/color/'+addColor
 
-          ).then(result => {
+          ).then(result => {       
 
             currentItem=result.data.shoes;
 
@@ -701,30 +705,28 @@ console.log(result.data);
 
               itemId=item.id;
               itemQty=item.in_stock;
-         
-     
+
 
             }
 
-            
-            localStorage.setItem("id",itemId);
-            
-            localStorage.setItem("itemQty",itemQty);
-   
-          });
-          
+             this.id=itemId;
+            this.addQty=itemQty;
 
-          
-
-
-          if(currentItem.length<0){
+      
+          if(!this.id){
+         
            
-            axios.post("https://shoes-catalogue-api.onrender.com/api/shoes",{'color':addColor,'brand':addBrand,'price':cost,'size':postSize,'in_stock':quantity,'image':this.image}).then((result)=>{
+           axios.post("https://shoes-catalogue-api.onrender.com/api/shoes",{'color':addColor,'brand':addBrand,'price':cost,'size':postSize,'in_stock':quantity,'image':this.image}).then((result)=>{
            
-            this.addMessage=result.data.message;
-           
+           this.addMessage="";
+            swal({title:"success",
+            text:"Added new stock stock!",
+            dangerMode:true
+          })
            this.showStock();
             });
+
+            
           }
 
           else{
@@ -741,16 +743,25 @@ console.log(result.data);
 
             else{
 
-            axios.post('https://shoes-catalogue-api.onrender.com/api/shoes/update',{qty:this.qty,shoesId:this.id}).then(result=>{
+           axios.post('https://shoes-catalogue-api.onrender.com/api/shoes/update',{qty:this.qty,shoesId:this.id}).then(result=>{
 
-            this.addMessage=result.data.message;
+          this.addMessage="";
+
+            swal({title:"success",
+            text:"Updated stock!",
+            dangerMode:true
+          })
           
             this.showStock();
+         
             });
+
 
           }
             
           }
+
+        });
             
             }
             else{
