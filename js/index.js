@@ -52,7 +52,7 @@ document.addEventListener("alpine:init", () => {
          createCart(){
 
 
-          localStorage.clear();
+        
 
 
   if(this.name){
@@ -156,9 +156,8 @@ async addToCart(id){
 let shoesId=Number(id)
 
   if(!this.cart_code){
-
-    this.cart_code=0;
-    location.href="user.html"
+swal({text:"please login to add items to the cart",
+dangerMode:true});
  
 
   }
@@ -174,7 +173,6 @@ let shoesId=Number(id)
       result= await axios.get('https://shoes-catalogue-api.onrender.com/api/shoes/id/'+shoesId+'/cart_code/'+this.cart_code);
      let res=result.data.result;
 
-     console.log(res)
 
      if(res==true || res==false){
 
